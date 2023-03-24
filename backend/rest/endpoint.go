@@ -4,12 +4,15 @@ import (
 	"backend/data"
 	"backend/service"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
-	"strconv"
+
+	"github.com/go-chi/chi"
 )
 
 func GetBlock(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(chi.URLParam(r, "height"))
 	response, block := service.GetBlock(r)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(response)
@@ -58,22 +61,10 @@ func GetPrice(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetBlocks(w http.ResponseWriter, r *http.Request) {
-	hasPage := r.URL.Query().Has("page")
-	page := r.URL.Query().Get("page")
-
 	var response int
 	var blocks data.Blocks
 
-	if hasPage {
-		pageNum, err := strconv.Atoi(page)
-		if err != nil {
-			response, blocks = service.GetBlocks(r, 0)
-		} else {
-			response, blocks = service.GetBlocks(r, pageNum)
-		}
-	} else {
-		response, blocks = service.GetBlocks(r, 0)
-	}
+	response, blocks = service.GetBlocks(r)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(response)

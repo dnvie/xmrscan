@@ -38,9 +38,6 @@ func GetNetworkInfo() data.NetworkInfo {
 
 func GetPrice(r *http.Request) (int, data.Price) {
 	var returnPrice data.Price
-	ctx := r.Context()
-
-	fmt.Printf("%s: got /price request\n", ctx.Value(keyServerAddr))
 
 	resp, err := http.Get("https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=usd")
 	if err != nil {
@@ -55,7 +52,6 @@ func GetPrice(r *http.Request) (int, data.Price) {
 
 	var price data.Price
 	if err := json.Unmarshal(body, &price); err != nil {
-		fmt.Println("cannot unmarshal JSON")
 		return 404, returnPrice
 	} else {
 		return 200, price
@@ -80,7 +76,6 @@ func GetBlockByNumber(number int) (int, data.BlockInfo) {
 
 	var block data.BlockInfo
 	if err := json.Unmarshal(body, &block); err != nil {
-		fmt.Println("cannot unmarshal JSON")
 		return 404, returnBlock
 	} else if block.Status == "fail" {
 		return 404, returnBlock

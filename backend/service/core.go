@@ -9,24 +9,21 @@ import (
 	"sort"
 	"strconv"
 	"sync"
+
+	"github.com/go-chi/chi"
 )
 
-const keyServerAddr = "serverAddr"
+//const keyServerAddr = "serverAddr"
 
-func GetBlock(r *http.Request) (int, data.Block) {
-	ctx := r.Context()
-	fmt.Printf("%s: /block/ request: ", ctx.Value(keyServerAddr))
-
+/*func GetBlock(r *http.Request) (int, data.Block) {
 	var returnBlock data.Block
 	returnBlock.Status = "fail"
 
 	blockNumberString := r.URL.Path[len("/block/"):]
 	_, err := strconv.Atoi(blockNumberString)
 	if err != nil {
-		fmt.Printf("invalid\n")
 		return 404, returnBlock
 	} else {
-		fmt.Printf("%s\n", blockNumberString)
 		url := fmt.Sprintf("https://xmrchain.net/api/block/%s", blockNumberString)
 		resp, err := http.Get(url)
 		if err != nil {
@@ -41,7 +38,6 @@ func GetBlock(r *http.Request) (int, data.Block) {
 
 		var block data.Block
 		if err := json.Unmarshal(body, &block); err != nil {
-			fmt.Println("cannot unmarshal JSON")
 			return 404, returnBlock
 		} else if block.Status == "fail" {
 			return 404, returnBlock
@@ -49,19 +45,41 @@ func GetBlock(r *http.Request) (int, data.Block) {
 			return 200, block
 		}
 	}
+}*/
+
+func GetBlock(r *http.Request) (int, data.Block) {
+	var returnBlock data.Block
+	returnBlock.Status = "fail"
+
+	height := chi.URLParam(r, "height")
+	url := fmt.Sprintf("https://xmrchain.net/api/block/%s", height)
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return 404, returnBlock
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return 404, returnBlock
+	}
+
+	var block data.Block
+	if err := json.Unmarshal(body, &block); err != nil {
+		return 404, returnBlock
+	} else if block.Status == "fail" {
+		return 404, returnBlock
+	} else {
+		return 200, block
+	}
 }
 
 func GetTx(r *http.Request) (int, data.Tx) {
-	ctx := r.Context()
-	fmt.Printf("%s: /transaction/ request: ", ctx.Value(keyServerAddr))
-
 	var returnTx data.Tx
 	returnTx.Status = "fail"
 
-	txNumberString := r.URL.Path[len("/transaction/"):]
-	fmt.Printf("%s\n", txNumberString)
-
-	url := fmt.Sprintf("https://xmrchain.net/api/transaction/%s", txNumberString)
+	url := fmt.Sprintf("https://xmrchain.net/api/transaction/%s", chi.URLParam(r, "hash"))
 	resp, err := http.Get(url)
 	if err != nil {
 		return 404, returnTx
@@ -75,7 +93,6 @@ func GetTx(r *http.Request) (int, data.Tx) {
 
 	var tx data.Tx
 	if err := json.Unmarshal(body, &tx); err != nil {
-		fmt.Println("cannot unmarshal JSON")
 		return 404, returnTx
 	} else if tx.Status == "fail" {
 		return 404, returnTx
@@ -84,10 +101,12 @@ func GetTx(r *http.Request) (int, data.Tx) {
 	}
 }
 
-func GetBlocks(r *http.Request, page int) (int, data.Blocks) {
-	ctx := r.Context()
-	fmt.Printf("%s: /blocks2/ request: \n", ctx.Value(keyServerAddr))
-
+func GetBlocks(r *http.Request) (int, data.Blocks) {
+	var page int
+	page, err := strconv.Atoi(chi.URLParam(r, "page"))
+	if err != nil {
+		page = 0
+	}
 	var returnBlocks data.Blocks
 	height := GetNetworkInfo().Data.Height - 1 - page*25
 
