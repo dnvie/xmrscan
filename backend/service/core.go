@@ -13,40 +13,6 @@ import (
 	"github.com/go-chi/chi"
 )
 
-//const keyServerAddr = "serverAddr"
-
-/*func GetBlock(r *http.Request) (int, data.Block) {
-	var returnBlock data.Block
-	returnBlock.Status = "fail"
-
-	blockNumberString := r.URL.Path[len("/block/"):]
-	_, err := strconv.Atoi(blockNumberString)
-	if err != nil {
-		return 404, returnBlock
-	} else {
-		url := fmt.Sprintf("https://xmrchain.net/api/block/%s", blockNumberString)
-		resp, err := http.Get(url)
-		if err != nil {
-			return 404, returnBlock
-		}
-		defer resp.Body.Close()
-
-		body, err := io.ReadAll(resp.Body)
-		if err != nil {
-			return 404, returnBlock
-		}
-
-		var block data.Block
-		if err := json.Unmarshal(body, &block); err != nil {
-			return 404, returnBlock
-		} else if block.Status == "fail" {
-			return 404, returnBlock
-		} else {
-			return 200, block
-		}
-	}
-}*/
-
 func GetBlock(r *http.Request) (int, data.Block) {
 	var returnBlock data.Block
 	returnBlock.Status = "fail"
@@ -56,22 +22,22 @@ func GetBlock(r *http.Request) (int, data.Block) {
 
 	resp, err := http.Get(url)
 	if err != nil {
-		return 404, returnBlock
+		return resp.StatusCode, returnBlock
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return 404, returnBlock
+		return resp.StatusCode, returnBlock
 	}
 
 	var block data.Block
 	if err := json.Unmarshal(body, &block); err != nil {
-		return 404, returnBlock
+		return resp.StatusCode, returnBlock
 	} else if block.Status == "fail" {
-		return 404, returnBlock
+		return resp.StatusCode, returnBlock
 	} else {
-		return 200, block
+		return resp.StatusCode, block
 	}
 }
 
@@ -82,22 +48,22 @@ func GetTx(r *http.Request) (int, data.Tx) {
 	url := fmt.Sprintf("https://xmrchain.net/api/transaction/%s", chi.URLParam(r, "hash"))
 	resp, err := http.Get(url)
 	if err != nil {
-		return 404, returnTx
+		return resp.StatusCode, returnTx
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return 404, returnTx
+		return resp.StatusCode, returnTx
 	}
 
 	var tx data.Tx
 	if err := json.Unmarshal(body, &tx); err != nil {
-		return 404, returnTx
+		return resp.StatusCode, returnTx
 	} else if tx.Status == "fail" {
-		return 404, returnTx
+		return resp.StatusCode, returnTx
 	} else {
-		return 200, tx
+		return resp.StatusCode, tx
 	}
 }
 
@@ -108,7 +74,11 @@ func GetBlocks(r *http.Request) (int, data.Blocks) {
 		page = 0
 	}
 	var returnBlocks data.Blocks
-	height := GetNetworkInfo().Data.Height - 1 - page*25
+	height := -1
+	resp, info := GetNetworkInfo()
+	if resp == 200 {
+		height = info.Data.Height - 1 - page*25
+	}
 
 	wg := new(sync.WaitGroup)
 	for i := height; i > height-25; i-- {

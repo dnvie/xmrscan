@@ -60,6 +60,22 @@ func GetPrice(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func GetNetworkInfo(w http.ResponseWriter, r *http.Request) {
+	response, info := service.GetNetworkInfo()
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(response)
+	if response == 200 {
+		infoJSON, err := json.Marshal(info)
+		if err != nil {
+			io.WriteString(w, "Received Invalid Network Info JSON Object")
+		} else {
+			w.Write(infoJSON)
+		}
+	} else {
+		io.WriteString(w, "\nError: Could not fetch Network Info Data\n")
+	}
+}
+
 func GetBlocks(w http.ResponseWriter, r *http.Request) {
 	var response int
 	var blocks data.Blocks
