@@ -1,0 +1,118 @@
+.header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 70px;
+    background-color: rgb(16, 16, 16);
+    justify-content: space-between;
+    align-items: center;
+}
+
+//to-do: Fix menu svg
+.menuContainer {
+    display: flex;
+    width: 110px;
+    height: 30px;
+    margin-left: 20px;
+    text-align: left;
+    align-items: center;
+}
+
+.searchBar {
+    width: 500px;
+    height: 30px;
+    background-color: rgb(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.15s;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+}
+
+.searchBar:focus {
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.269);
+    background-color: rgb(255, 255, 255, 0.12);
+}
+
+input:focus {
+    border: none;
+    text-decoration: none;
+    outline: none;
+}
+
+::placeholder {
+    color: rgb(255, 255, 255, 0.4);
+}
+
+.logoContainer {
+    width: 110px;
+    height: 30px;
+    margin-right: 20px;
+    text-align: right;
+}
+
+.logo {
+    width: auto;
+    height: 100%;
+}
+
+.infoContainer {
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    left: 0;
+    top: 70px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 13px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.infoItem {
+    color: rgb(255, 255, 255, 0.5);
+    font-family: 'DM Mono';
+    font-weight: 400;
+    height: 30px;
+    min-width: fit-content;
+    background-color: #1F1F1F;
+    border-radius: 10px;
+    line-height: 30px;
+    padding: 0px 15px;
+    span {
+        color: rgb(255, 255, 255, 0.8);
+    }
+    transition: all 0.15s;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+}
+
+.infoItem:first-child {
+    margin-left: 15px;
+    background-color: #101F26;
+    color: #66A9C9;
+    span {
+        color: #83D7FF;
+    }
+}
+
+.infoItem:nth-child(2) {
+    background-color: #00FF6610;
+    color: #b8ffcdaf;
+    span {
+        color: #6eff9a;
+    }
+}
+
+.infoItem.scrolled {
+    transform: translateY(-3px);
+    opacity: 0;
+}
+
+
