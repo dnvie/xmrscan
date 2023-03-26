@@ -1,0 +1,18 @@
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+app-header {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    z-index: 2;
+}
+
+app-blocks {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    height: fit-content;
+}

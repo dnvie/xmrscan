@@ -1,11 +1,11 @@
 .header {
-    position: fixed;
+    position: sticky;
     display: flex;
     width: 100%;
     top: 0;
     left: 0;
     height: 70px;
-    background-color: rgb(16, 16, 16);
+    background-color: var(--background);
     justify-content: space-between;
     align-items: center;
 }
@@ -23,18 +23,18 @@
 .searchBar {
     width: 500px;
     height: 30px;
-    background-color: rgb(255, 255, 255, 0.1);
+    background-color: var(--searchBar);
     border: none;
     border-radius: 10px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--searchBarText);
     transition: all 0.15s;
     animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
 }
 
 .searchBar:focus {
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.269);
-    background-color: rgb(255, 255, 255, 0.12);
+    box-shadow: 0px 10px 10px var(--searchBarBoxShadow);
+    background-color: var(--searchBarFocus);
 }
 
 input:focus {
@@ -44,7 +44,7 @@ input:focus {
 }
 
 ::placeholder {
-    color: rgb(255, 255, 255, 0.4);
+    color: var(--placeholder);
 }
 
 .logoContainer {
@@ -60,7 +60,7 @@ input:focus {
 }
 
 .infoContainer {
-    position: fixed;
+    position: sticky;
     width: 100%;
     height: 30px;
     left: 0;
@@ -77,17 +77,17 @@ input:focus {
 }
 
 .infoItem {
-    color: rgb(255, 255, 255, 0.5);
-    font-family: 'DM Mono';
+    color: var(--infoItemText);
+    font-family: var(--monospace);
     font-weight: 400;
     height: 30px;
     min-width: fit-content;
-    background-color: #1F1F1F;
+    background-color: var(--infoItemBackground);
     border-radius: 10px;
     line-height: 30px;
     padding: 0px 15px;
     span {
-        color: rgb(255, 255, 255, 0.8);
+        color: var(--infoItemTextSpan);
     }
     transition: all 0.15s;
     animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
@@ -95,18 +95,18 @@ input:focus {
 
 .infoItem:first-child {
     margin-left: 15px;
-    background-color: #101F26;
-    color: #66A9C9;
+    background-color: var(--infoItemNetworkBackground);
+    color: var(--infoItemNetworkText);
     span {
-        color: #83D7FF;
+        color: var(--infoItemNetworkTextSpan);
     }
 }
 
 .infoItem:nth-child(2) {
-    background-color: #00FF6610;
-    color: #b8ffcdaf;
+    background-color: var(--infoItemPriceUpBackground);
+    color: var(--infoItemPriceUpText);
     span {
-        color: #6eff9a;
+        color: var(--infoItemPriceUpTextSpan);
     }
 }
 

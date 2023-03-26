@@ -1,10 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
 
+:root {
+    --background: rgb(16, 16, 16);
+    --searchBar: rgb(255, 255, 255, 0.1);
+    --searchBarText: rgba(255, 255, 255, 0.8);
+    --searchBarBoxShadow: rgba(0, 0, 0, 0.269);
+    --searchBarFocus: rgb(255, 255, 255, 0.12);
+    --placeholder: rgb(255, 255, 255, 0.4);
+    --infoItemText: rgb(255, 255, 255, 0.5);
+    --infoItemTextSpan: rgb(255, 255, 255, 0.8);
+    --infoItemBackground: #1F1F1F;
+    --infoItemNetworkText: #66A9C9;
+    --infoItemNetworkTextSpan: #83D7FF;
+    --infoItemNetworkBackground: #101F26;
+    --infoItemPriceUpText: #b8ffcdaf;
+    --infoItemPriceUpTextSpan: #6eff9a;
+    --infoItemPriceUpBackground: #00FF6610;
+
+    --monospace: 'DM Mono';
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #12100E;
+    background-color: var(--background);
     height: 110vh;
 }
 
