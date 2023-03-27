@@ -67,8 +67,8 @@ export class HeaderComponent {
   }
 
   public ngOnInit(): void {
-    this.initScroll();
-    this.service.getNetworkInfo().subscribe(
+    //this.initScroll();
+    /*this.service.getNetworkInfo().subscribe(
       data => {
           this.info = data
       },
@@ -88,7 +88,7 @@ export class HeaderComponent {
           this.removeScroll()
         }
       }
-    );
+    );*/
     /*this.service.getPrice().subscribe(
       data => {
           this.price = data

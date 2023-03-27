@@ -1,8 +1,13 @@
-<div class="main" (click)="test()">
-<div id="block">Height: </div>
+<div class="main">
+    <div class="blocks" id="blocks">
+        <p (click)="test()">Latest Blocks:</p>
+        <div class="blockItem" id="blockItem{{i}}" *ngFor="let block of blocks.Blocks; let i = index">
+            <div class="blockHeight">Height: <span>{{block.data!.block_height}}</span> </div>
+            <div class="blockHash">Hash: <span>{{block.data!.hash.substring(0, 8)}}<span>...</span>{{block.data!.hash.substring(block.data!.hash.length-8, block.data!.hash.length)}}</span></div>
+            <div class="blockTxs">Transactions: <span>{{block.data!.txs.length}}</span></div>
+            <div class="blockAge">Created: <span>{{block.data!.RelativeTime}}</span></div>
+            <!--<div class="newBadge">New</div>      *ngFor="let number of [].constructor(25)"   {{block.data!.timestamp_utc}} -->
+        </div>
+    </div>
 </div>
-<tr *ngFor="let block of blocks.Blocks" class="center-td">
-    <td>{{block.data!.block_height}} + "\n"</td>
-  </tr>
-
 <div class="loading" id="loading">Loading…</div>

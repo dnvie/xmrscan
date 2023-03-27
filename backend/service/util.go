@@ -7,6 +7,13 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"time"
+
+	"github.com/nleeper/goment"
+)
+
+var (
+	g, _ = goment.New(time.Date(2015, 11, 10, 5, 30, 0, 0, time.UTC))
 )
 
 func GetNetworkInfo() (int, data.NetworkInfo) {
@@ -81,6 +88,12 @@ func GetBlockByNumber(number int) (int, data.BlockInfo) {
 	} else if block.Status == "fail" {
 		return resp.StatusCode, returnBlock
 	} else {
+		g, _ := goment.New(time.UnixMilli(block.Data.Timestamp * 1000))
+		relativeTime := g.FromNow()
+		if relativeTime == "a few seconds ago" {
+			relativeTime = "seconds ago"
+		}
+		block.Data.RelativeTime = relativeTime
 		return resp.StatusCode, block
 	}
 

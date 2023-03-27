@@ -3,7 +3,8 @@ export interface BlockInfo {
         block_height: number;
         hash: string;
         size: number;
-        timestamp_utc: string;
+        timestamp: number;
+        RelativeTime: string;
         txs: {
         }[];
     };

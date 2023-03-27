@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Blocks, BlockInfo } from 'src/app/data/blocks';
 import { BlocksService } from 'src/app/service/blocks.service';
 
@@ -7,7 +7,7 @@ import { BlocksService } from 'src/app/service/blocks.service';
   templateUrl: './blocks.component.html',
   styleUrls: ['./blocks.component.scss']
 })
-export class BlocksComponent {
+export class BlocksComponent implements OnInit{
 
   /*blockInfo: BlockInfo = {
     data: undefined,
@@ -35,9 +35,20 @@ export class BlocksComponent {
       () => {
         console.log(this.blocks);
         document.getElementById('loading')!.classList.remove('active');
-        document.getElementById('block')!.innerText = "Height: " + this.blocks.Blocks![0].data!.block_height.toString()
+        //document.getElementById('block')!.innerText = "Height: " + this.blocks.Blocks![0].data!.block_height.toString()
       }
     );
+  }
+
+  public ngOnInit(): void {
+    const blocksDiv = document.getElementById('blocks');
+    for (let i = 0; i < 25; i++) {
+      const blockItem = document.createElement('div');
+      blockItem.setAttribute("id", "blockItem"+i);
+      blockItem.classList.add('blockItem');
+      //const blockHeight = document.createElement('div')
+      blocksDiv?.appendChild(blockItem);
+    }
   }
 
 }

@@ -1,13 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
+    --absolute: white;
     --background: rgb(16, 16, 16);
     --searchBar: rgb(255, 255, 255, 0.1);
     --searchBarText: rgba(255, 255, 255, 0.8);
     --searchBarBoxShadow: rgba(0, 0, 0, 0.269);
     --searchBarFocus: rgb(255, 255, 255, 0.12);
     --placeholder: rgb(255, 255, 255, 0.4);
+    --infoContainerGradient: linear-gradient(180deg, rgba(16,16,16,1) 0%, rgba(16,16,16,0) 100%);
+    --infoContainerGradientLeft: linear-gradient(90deg, rgba(16,16,16,1) 0%, rgba(16,16,16,0) 100%);
+    --infoContainerGradientRight: linear-gradient(270deg, rgba(16,16,16,1) 0%, rgba(16,16,16,0) 100%);
     --infoItemText: rgb(255, 255, 255, 0.5);
     --infoItemTextSpan: rgb(255, 255, 255, 0.8);
     --infoItemBackground: #1F1F1F;
@@ -17,11 +20,22 @@
     --infoItemPriceUpText: #b8ffcdaf;
     --infoItemPriceUpTextSpan: #6eff9a;
     --infoItemPriceUpBackground: #00FF6610;
-    --infoItemPriceDownText: #BF8A88;
-    --infoItemPriceDownTextSpan: #FFA09A;
-    --infoItemPriceDownBackground: #411D14;
+    --infoItemPriceDownText: #C66564;
+    --infoItemPriceDownTextSpan: #FF8080;
+    --infoItemPriceDownBackground: #412624;
+    --blockItemBackground: #181716;
+    --blockItemText: #8B8B8A;
+    --blockItemTextSpan: #D1D1D0;
+    --blockItemTextSpanSpan: #747473;
+    --newBadgeBackground: #0e2428;
+    --newBadgeText: #9af2ff;
 
     --monospace: 'DM Mono';
+    --sans-serif: 'Inter';
+}
+
+[data-theme="dark"] {
+    --absolute: black;
 }
 
 body {

@@ -106,7 +106,8 @@ type BlockInfo struct {
 		BlockHeight  int64  `json:"block_height"`
 		Hash         string `json:"hash"`
 		Size         int64  `json:"size"`
-		TimestampUtc string `json:"timestamp_utc"`
+		Timestamp    int64  `json:"timestamp"`
+		RelativeTime string
 		Txs          []struct {
 		} `json:"txs"`
 	} `json:"data"`

@@ -1,5 +1,5 @@
 .header {
-    position: sticky;
+    position: fixed;
     display: flex;
     width: 100%;
     top: 0;
@@ -64,7 +64,7 @@ input:focus::placeholder {
 }
 
 .infoContainer {
-    position: sticky;
+    position: fixed;
     width: 100%;
     height: 30px;
     left: 0;
@@ -74,6 +74,24 @@ input:focus::placeholder {
     column-gap: 13px;
     overflow-x: auto;
     overflow-y: hidden;
+    background: var(--infoContainerGradient);
+}
+
+.gradientLeft {
+    left: 0;
+    background: var(--infoContainerGradientLeft);
+}
+
+.gradientRight {
+    right: 0;
+    background: var(--infoContainerGradientRight);
+}
+
+.gradientItem {
+    position: fixed;
+    width: 20px;
+    height: 30px;
+    top: 70px;
 }
 
 ::-webkit-scrollbar {
