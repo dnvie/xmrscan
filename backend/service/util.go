@@ -39,7 +39,8 @@ func GetNetworkInfo() (int, data.NetworkInfo) {
 func GetPrice(r *http.Request) (int, data.Price) {
 	var returnPrice data.Price
 
-	resp, err := http.Get("https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=usd")
+	resp, err := http.Get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=monero")
+
 	if err != nil {
 		return resp.StatusCode, returnPrice
 	}

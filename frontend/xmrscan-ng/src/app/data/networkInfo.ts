@@ -29,3 +29,8 @@ export interface Data {
     tx_pool_size_kbytes:        number;
     white_peerlist_size:        number;
 }
+
+export interface Price {
+    current_price?:               number;
+    price_change_percentage_24h?: number;
+}

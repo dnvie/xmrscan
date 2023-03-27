@@ -1,3 +1,8 @@
-<div class="main">
-<p>.</p>
+<div class="main" (click)="test()">
+<div id="block">Height: </div>
 </div>
+<tr *ngFor="let block of blocks.Blocks" class="center-td">
+    <td>{{block.data!.block_height}} + "\n"</td>
+  </tr>
+
+<div class="loading" id="loading">Loading…</div>

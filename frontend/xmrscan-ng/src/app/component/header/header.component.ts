@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { NetworkInfo } from 'src/app/data/networkInfo';
+import { NetworkInfo, Price } from 'src/app/data/networkInfo';
 import { NetworkService } from 'src/app/service/network.service';
 
 @Component({
@@ -15,6 +15,10 @@ export class HeaderComponent {
     data: undefined,
     status: undefined
   };
+  price: Price = {
+    current_price: undefined,
+    price_change_percentage_24h: undefined
+  }
 
   constructor(
     private service: NetworkService
@@ -70,7 +74,7 @@ export class HeaderComponent {
       },
       error => {
         console.log("error loading network info", error);
-    },
+      },
       () => {
         if(this.info.data != undefined) {
           document.getElementById('info3span')!.innerText = this.info.data.hash_rate + " H/s"
@@ -84,6 +88,20 @@ export class HeaderComponent {
           this.removeScroll()
         }
       }
-  );
+    );
+    /*this.service.getPrice().subscribe(
+      data => {
+          this.price = data
+      },
+      error => {
+        console.log("error loading price info", error);
+      },
+      () => {
+        if(this.info.data != undefined) {
+          document.getElementById('info2span')!.innerText = this.price.current_price + "$";
+          (this.price.price_change_percentage_24h! < 0) ? document.getElementById('info2')?.classList.add('priceDown') : document.getElementById('info2')?.classList.add('priceUp')
+        }
+      }
+    );*/
   }
 }

@@ -92,10 +92,9 @@ type Tx struct {
 	Status string `json:"status"`
 }
 
-type Price struct {
-	Monero struct {
-		Usd float64 `json:"usd"`
-	} `json:"monero"`
+type Price []struct {
+	CurrentPrice             float64 `json:"current_price"`
+	PriceChangePercentage24H float64 `json:"price_change_percentage_24h"`
 }
 
 type Blocks struct {
