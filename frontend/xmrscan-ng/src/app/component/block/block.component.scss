@@ -1,0 +1,364 @@
+.main {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    background-color: var(--background);
+    border-radius: 10px;
+    p {
+        color: white;
+    }
+    .transactions {
+        color: var(--blockItemTextSpan);
+        font-weight: 500;
+    }
+}
+
+.blockPath {
+    position: absolute;
+    color: white;
+    font-family: var(--sans-serif);
+    font-size: 14px;
+    top: -15px;
+    width: 900px;
+    margin: 0 auto;
+    z-index: 2;
+    .blockPathBlocks {
+        color: var(--blockItemText);
+    }
+    .blockPathCurrentBlock {
+        color: var(--coinbaseBadgeText);
+    }
+    .blockPathSpacer {
+        color: var(--blockItemText);
+    }
+}
+
+.blockPathBlocks:hover {
+    cursor: pointer;
+    filter: brightness(1.3);
+    text-decoration: underline;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    position: relative;
+    width: 900px;
+    height: fit-content;
+    background-color: var(--background);
+    font-family: var(--sans-serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--absolute);
+}
+
+.blockInfo {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 80px;
+    border-radius: 15px;
+    background-color: var(--blockItemBackground);
+    filter: brightness(1.3);
+    line-height: 80px;
+    text-align: left;
+    font-family: var(--sans-serif);
+    font-weight: 400;
+    color: var(--blockItemText);
+    font-size: 16px;
+    transition: all 0.05s linear;
+    border: 1px solid transparent;
+    .blockHash {
+        margin-left: 20px;
+        width: 295px;
+        span {
+            font-family: var(--monospace);
+            color: var(--blockItemTextSpan);
+            span {
+                font-family: var(--monospace);
+                color: var(--blockItemTextSpanSpan);
+            }
+        }
+    }
+    .blockTxs {
+        width: 184px;
+        span {
+            color: var(--blockItemTextSpan);
+        }
+    }
+    .blockSize {
+        width: 191px;
+        span {
+            color: var(--blockItemTextSpan);
+        }
+    }
+    .blockAge {
+        margin-right: 20px;
+        width: 189px;
+        span {
+            color: var(--blockItemTextSpan);
+        }
+    }
+}
+
+.tx {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: var(--blockItemBackground);
+    line-height: 50px;
+    text-align: left;
+    font-family: var(--sans-serif);
+    font-weight: 400;
+    color: var(--blockItemText);
+    font-size: 16px;
+    transition: all 0.05s linear;
+    border: 1px solid transparent;
+    .txHash {
+        margin-left: 20px;
+        width: 295px;
+        span {
+            font-family: var(--monospace);
+            color: var(--blockItemTextSpan);
+            span {
+                font-family: var(--monospace);
+                color: var(--blockItemTextSpanSpan);
+            }
+        }
+    }
+    .txPaymentID {
+        width: 317px;
+        span {
+            font-family: var(--monospace);
+            color: var(--blockItemTextSpan);
+        }
+    }
+    .txSize {
+        width: 247px;
+        span {
+            color: var(--blockItemTextSpan);
+        }
+    }
+    .coinbaseBadge {
+        position: absolute;
+        width: 80px;
+        height: 30px;
+        border-radius: 11px;
+        background-color: var(--coinbaseBadgeBackground);
+        color: var(--coinbaseBadgeText);
+        line-height: 30px;
+        text-align: center;
+        font-family: var(--sans-serif);
+        font-weight: 600;
+        font-size: 12px;
+        top: -12px;
+        right: -25px;
+    }
+}
+
+.tx:hover {
+    filter: brightness(1.35);
+    box-shadow: 0px 10px 10px var(--searchBarBoxShadow);
+    cursor: pointer;
+    border: 1px solid var(--infoItemNetworkText);
+}
+
+.count {
+    color: var(--blockItemTextSpanSpan);
+}
+
+@media only screen and (max-width: 950px) {
+
+    .blockPath {
+        width: 550px;
+    }
+    .block {
+        row-gap: 15px;
+        width: 550px;
+        font-size: 28px;
+    }
+    
+    .blockInfo {
+        flex-wrap: wrap;
+        height: 120px;
+        line-height: 60px;
+        font-size: 18px;
+        .blockSize {
+            margin-left: 20px;
+            width: fit-content;
+        }
+        .blockAge {
+            margin-left: 40px;
+            width: fit-content;
+        }
+    }
+    
+    .tx {
+        height: 150px;
+        flex-wrap: wrap;
+        font-size: 18px;
+        .txHash {
+            margin-left: 20px;
+            width: 550px;
+        }
+        .txPaymentID {
+            margin-left: 20px;
+            width: 550px;
+        }
+        .txSize {
+            margin-left: 20px;
+            width: 550px;
+        }
+        .coinbaseBadge {
+            width: 90px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+            right: -18px;
+        }
+    }
+}
+
+@media only screen and (max-width: 590px) {
+    .blockPath {
+        width: 450px;
+    }
+    .block {
+        width: 450px;
+    }
+    
+    .blockInfo {
+        flex-wrap: wrap;
+        height: 240px;
+        line-height: 60px;
+        font-size: 18px;
+        .blockHash {
+            margin-left: 15px;
+            width: 425px;
+        }
+        .blockTxs {
+            margin-left: 15px;
+            width: 425px;
+        }
+        .blockSize {
+            margin-left: 15px;
+            width: 425px;
+        }
+        .blockAge {
+            margin-left: 15px;
+            width: 425px;
+        }
+    }
+    
+    .tx {
+        height: 150px;
+        flex-wrap: wrap;
+        font-size: 18px;
+        .txHash {
+            margin-left: 15px;
+            width: 450px;
+        }
+        .txPaymentID {
+            margin-left: 15px;
+            width: 450px;
+        }
+        .txSize {
+            margin-left: 15px;
+            width: 450px;
+        }
+        .coinbaseBadge {
+            right: -12px;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .blockPath {
+        width: 350px;
+    }
+    .block {
+        width: 350px;
+    }
+    
+    .blockInfo {
+        .blockHash {
+            width: 300px;
+        }
+        .blockTxs {
+            width: 300px;
+        }
+        .blockSize {
+            width: 300px;
+        }
+        .blockAge {
+            width: 300px;
+        }
+    }
+    
+    .tx {
+        .txHash {
+            width: 300px;
+        }
+        .txPaymentID {
+            width: 300px;
+        }
+        .txSize {
+            width: 300px;
+        }
+        .coinbaseBadge {
+            width: 70px;
+            height: 30px;
+            font-size: 12px;
+            line-height: 30px;
+            font-weight: 400;
+            top: -18px;
+            right: -22px;
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .blockPath {
+        width: 300px;
+    }
+    .block {
+        width: 300px;
+    }
+    
+    .blockInfo {
+        font-size: 16px;
+        .blockHash {
+            width: 270px;
+        }
+        .blockTxs {
+            width: 270px;
+        }
+        .blockSize {
+            width: 270px;
+        }
+        .blockAge {
+            width: 270px;
+        }
+    }
+    
+    .tx {
+        font-size: 16px;
+        .txHash {
+            width: 270px;
+        }
+        .txPaymentID {
+            width: 270px;
+        }
+        .txSize {
+            width: 270px;
+        }
+    }
+}

@@ -7,10 +7,17 @@ app-header {
     position: relative;
     width: 100%;
     height: 100px;
-    z-index: 2;
+    z-index: 99;
 }
 
 app-blocks {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+}
+
+.container {
+    margin-top: 150px;
     position: relative;
     width: 100%;
     height: fit-content;

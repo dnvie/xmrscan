@@ -9,8 +9,10 @@ import (
 	"sort"
 	"strconv"
 	"sync"
+	"time"
 
 	"github.com/go-chi/chi"
+	"github.com/nleeper/goment"
 )
 
 func GetBlock(r *http.Request) (int, data.Block) {
@@ -37,6 +39,12 @@ func GetBlock(r *http.Request) (int, data.Block) {
 	} else if block.Status == "fail" {
 		return resp.StatusCode, returnBlock
 	} else {
+		g, _ := goment.New(time.UnixMilli(block.Data.Timestamp * 1000))
+		relativeTime := g.FromNow()
+		if relativeTime == "a few seconds ago" {
+			relativeTime = "seconds ago"
+		}
+		block.Data.RelativeTime = relativeTime
 		return resp.StatusCode, block
 	}
 }

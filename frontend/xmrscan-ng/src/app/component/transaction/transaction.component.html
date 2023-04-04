@@ -1,0 +1,29 @@
+<div class="main">
+    <div class="txPath"><span class="txBlocks" routerLink="/">Blocks</span><span class="txPathSpacer"> • </span><span class="txPathCurrentBlock" routerLink="/block/{{transaction.data!.block_height}}"> Block {{transaction.data!.block_height}}</span><span class="txPathSpacer"> • </span><span class="txPathCurrentTx"> Transaction {{transaction.data!.tx_hash.substring(0,4)}}<span> ••• </span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-4,transaction.data!.tx_hash.length)}}</span></div>
+    <div class="tx" id="tx">
+        <p>Transaction: <span>{{transaction.data!.tx_hash.substring(0,4)}}<span class="dots"> ••• </span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-4,transaction.data!.tx_hash.length)}}</span></p>
+        <div class="txCoinbaseBadge" *ngIf="transaction.data!.coinbase">Coinbase</div>
+        <div class="txInfoStatusConfirmed" *ngIf="(transaction.data!.confirmations) >= 10">
+            <div class="txConfirmations" >{{transaction.data!.confirmations}}<span class="confirmed"> Confirmations</span></div>
+            <div class="txConfirmationStatus">Confirmed</div>
+        </div>
+        <div class="txInfoStatusConfirming" *ngIf="(transaction.data!.confirmations) < 10">
+            <div class="txConfirmations">{{transaction.data!.confirmations}} <span class="confirming">of</span> 10<span class="confirming"> Confirmations</span></div>
+            <div class="txConfirmationStatus">Confirming</div>
+        </div>
+        <div class="txInfo">
+            <div class="txHash">Hash: <span>{{transaction.data!.tx_hash.substring(0,6)}}<span>•••</span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-6,transaction.data!.tx_hash.length)}}</span></div>
+            <div class="txFee">Fee: <span>{{(transaction.data!.tx_fee)/1000000000000}} XMR</span></div>
+            <div class="txPaymentID">Payment ID: <span>{{transaction.data!.payment_id8}}</span></div>
+            <div class="txSize">Size: <span>{{((transaction.data!.tx_size)/1000).toFixed(2)}} kB</span></div>
+        </div>
+        <p class="io" *ngIf="transaction.data!.inputs != null">Inputs: <span class="count">{{transaction.data!.inputs.length}}</span></p>
+        <div class="ioItem" *ngFor="let key of transaction.data!.inputs">
+            <div>Key Image: <span>{{key.key_image}}</span></div>
+        </div>
+        <p class="io" *ngIf="transaction.data!.outputs != null">Outputs: <span class="count">{{transaction.data!.outputs.length}}</span></p>
+        <div class="ioItem" *ngFor="let stAdd of transaction.data!.outputs">
+            <div>Stealth Address: <span>{{stAdd.public_key}}</span></div>
+        </div>
+    </div>
+</div>

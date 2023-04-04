@@ -78,7 +78,8 @@
     font-weight: 400;
     color: var(--blockItemText);
     font-size: 16px;
-    transition: all 0.075s linear;
+    transition: all 0.05s linear;
+    border: 1px solid transparent;
     .blockHeight {
         margin-left: 20px;
         width: 184px;
@@ -129,7 +130,103 @@
 }
 
 .blockItem:hover {
-    filter: brightness(1.3);
+    filter: brightness(1.35);
     box-shadow: 0px 10px 10px var(--searchBarBoxShadow);
     cursor: pointer;
+    border: 1px solid var(--infoItemNetworkText);
+}
+
+@media only screen and (max-width: 950px) {
+
+    .blocks {
+        row-gap: 15px;
+        width: 550px;
+        font-size: 28px;
+    }
+    
+    .blockItem {
+        flex-wrap: wrap;
+        height: 120px;
+        line-height: 60px;
+        font-size: 18px;
+        .blockHeight {
+            margin-left: 20px;
+            width: 192px;
+        }
+        .blockHash {
+            width: 295px;
+        }
+        .blockTxs {
+            margin-left: 20px;
+        }
+        .blockAge {
+            width: 295px;
+        }
+    }
+}
+
+@media only screen and (max-width: 590px) {
+
+    .blocks {
+        width: 450px;
+    }
+    
+    .blockItem {
+        height: 150px;
+        line-height: 50px;
+        .blockHeight {
+            margin-left: 15px;
+            width: 350px;
+        }
+        .blockHash {
+            margin-left: 15px;
+            width: 350px;
+        }
+        .blockTxs {
+            display: none;
+        }
+        .blockAge {
+            margin-left: 15px;
+            width: 350px;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    .blocks {
+        width: 350px;
+    }
+    
+    .blockItem {
+        .blockHeight {
+            width: 320px;
+        }
+        .blockHash {
+            width: 320px;
+        }
+        .blockAge {
+            width: 320px;
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+    .blocks {
+        width: 300px;
+    }
+    
+    .blockItem {
+        font-size: 16px;
+        .blockHeight {
+            width: 270px;
+        }
+        .blockHash {
+            width: 270px;
+        }
+        .blockAge {
+            width: 270px;
+        }
+    }
 }

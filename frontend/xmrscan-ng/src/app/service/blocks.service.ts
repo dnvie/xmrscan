@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
+import { Block } from '../data/block';
 import { BlockInfo, Blocks } from '../data/blocks';
 
 
@@ -23,7 +24,10 @@ export class BlocksService {
         } else {
             return this.http.get<Blocks>(baseUrl + '/blocks/' + page);
         }
-        
+    }
+
+    getBlock(height: string | null): Observable<Block> {
+        return this.http.get<Block>(baseUrl + '/block/' + height);
     }
 
 }

@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { NetworkInfo, Price } from 'src/app/data/networkInfo';
 import { NetworkService } from 'src/app/service/network.service';
 
@@ -10,7 +11,7 @@ import { NetworkService } from 'src/app/service/network.service';
 export class HeaderComponent {
 
   visible = true
-  delay = 20
+  delay = 40
   info: NetworkInfo = {
     data: undefined,
     status: undefined
@@ -21,8 +22,25 @@ export class HeaderComponent {
   }
 
   constructor(
-    private service: NetworkService
-  ) { }
+    private service: NetworkService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationStart) {
+        if (!router.navigated) {
+          sessionStorage.removeItem('blocks');
+        }
+      }
+      if (event instanceof NavigationEnd) {
+        if (this.router.url != '/') {
+          this.addScroll();
+        } else {
+          this.removeScroll();
+        }
+      }
+  });
+  }
 
   initScroll() {
     for (let i = 1; i <= 10; i++) {
@@ -34,15 +52,21 @@ export class HeaderComponent {
     for (let i = 1; i <= 10; i++) {
       setTimeout(function () { document.getElementById('info'+i)?.classList.add('scrolled'); }, (i-1) * this.delay);
     }
+    document.getElementById('infoContainerGradientSpacer')?.classList.add('scrolled');
+    document.getElementById('infoContainerGradient')?.classList.add('scrolled');
+    document.getElementById('infoContainer')?.classList.add('scrolled');
   }
 
   removeScroll() {
     for (let i = 1; i <= 10; i++) {
       setTimeout(function () { document.getElementById('info'+i)?.classList.remove('scrolled'); }, (i-1) * this.delay);
     }
+    document.getElementById('infoContainerGradientSpacer')?.classList.remove('scrolled');
+    document.getElementById('infoContainerGradient')?.classList.remove('scrolled');
+    document.getElementById('infoContainer')?.classList.remove('scrolled');
   }
 
-  @HostListener('window:scroll', ['$event']) onScrollEvent($event: any) {
+  /*@HostListener('window:scroll', ['$event']) onScrollEvent($event: any) {
     this.scrollFunction()
   }
 
@@ -58,7 +82,7 @@ export class HeaderComponent {
         this.visible = true
       }
     }
-  }
+  }*/
 
   onWheel(event: WheelEvent): void {
     if (event.deltaY > 0) document.getElementById('infoContainer')!.scrollLeft += 60;

@@ -7,12 +7,9 @@ import { BlocksService } from 'src/app/service/blocks.service';
   templateUrl: './blocks.component.html',
   styleUrls: ['./blocks.component.scss']
 })
-export class BlocksComponent implements OnInit{
+export class BlocksComponent implements OnInit {
 
-  /*blockInfo: BlockInfo = {
-    data: undefined,
-    status: undefined
-  }*/
+  firstLoad = true
 
   blocks: Blocks = {
     Blocks: undefined
@@ -22,33 +19,30 @@ export class BlocksComponent implements OnInit{
     private service: BlocksService
   ) { }
 
-  test() {
-    document.getElementById('loading')!.classList.add('active');
-    this.service.getBlocks(undefined).subscribe(
-      data => {
+  loadBlocks() {
+    if (sessionStorage.getItem('blocks') == null) {
+      document.getElementById('loading')!.classList.add('active');
+      this.service.getBlocks(undefined).subscribe(
+        data => {
           this.blocks = data
-      },
-      error => {
-        console.log("error loading network info", error);
-        document.getElementById('loading')!.classList.remove('active');
-      },
-      () => {
-        console.log(this.blocks);
-        document.getElementById('loading')!.classList.remove('active');
-        //document.getElementById('block')!.innerText = "Height: " + this.blocks.Blocks![0].data!.block_height.toString()
-      }
-    );
+        },
+        error => {
+          console.log("error loading network info", error);
+          document.getElementById('loading')!.classList.remove('active');
+        },
+        () => {
+          document.getElementById('loading')!.classList.remove('active');
+          sessionStorage.setItem('blocks', JSON.stringify(this.blocks));
+        }
+      );
+    } else {
+      this.blocks = JSON.parse(sessionStorage.getItem('blocks')!);
+    }
   }
 
   public ngOnInit(): void {
-    const blocksDiv = document.getElementById('blocks');
-    for (let i = 0; i < 25; i++) {
-      const blockItem = document.createElement('div');
-      blockItem.setAttribute("id", "blockItem"+i);
-      blockItem.classList.add('blockItem');
-      //const blockHeight = document.createElement('div')
-      blocksDiv?.appendChild(blockItem);
-    }
+    this.loadBlocks();
   }
+
 
 }

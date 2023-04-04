@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { BlocksComponent } from './component/blocks/blocks.component';
+import { BlockComponent } from './component/block/block.component';
+import { TransactionComponent } from './component/transaction/transaction.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     BlocksComponent,
+    BlockComponent,
+    TransactionComponent,
   ],
   imports: [
     BrowserModule,
