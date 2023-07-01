@@ -1,6 +1,19 @@
+<!-- TODO:
+Show Next 25 Blocks on Blocks Page (buttons + indicator which are loaded e.g 1-25 of 12938123)
+Search Functionality
+-------Mempool Page (Done)
+Sidebar with Theme Switch and Mempool.
+New SVG for Menubar (correct color for light theme)
+New Logo (simpler, black white?)
+404 Page(s) (implement PageNotFoundComponent), then redirect to /404 on error fetches
+New page to verify deposits and payments (blockchair api documentation + exploremonero implementation)
+Error Handling + Error Toasts/Notifications
+
+Maybe a Landing Page/Overview Page (not straight to blocks e.g oklink.com/btc)
+-->
 <div class="main">
     <div class="blocks" id="blocks">
-        <p (click)="loadBlocks()">Latest Blocks:</p>
+        <p (click)="loadBlocks()" id="LatestBlocks">Latest Blocks:</p>
             <div class="blockItem" id="blockItem{{i}}" routerLink="/block/{{block.data!.block_height}}" *ngFor="let block of blocks.Blocks; let i = index">
             <div class="blockHeight">Height: <span>{{block.data!.block_height}}</span> </div>
             <div class="blockHash">Hash: <span>{{block.data!.hash.substring(0, 8)}}<span>•••</span>{{block.data!.hash.substring(block.data!.hash.length-8, block.data!.hash.length)}}</span></div>
@@ -8,162 +21,6 @@
             <div class="blockAge">Created: <span>{{block.data!.RelativeTime}}</span></div>
             <div class="newBadge" *ngIf="(block.data!.RelativeTime == 'seconds ago') || (block.data!.RelativeTime == 'a minute ago') || (block.data!.RelativeTime == '2 minutes ago')">New</div>
         </div> 
-
-        <!--<div class="blockItem" routerLink="/block/2853717">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>seconds ago</span></div>
-            <div class="newBadge">New</div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>1 minute ago</span></div>
-            <div class="newBadge">New</div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>2 minutes ago</span></div>
-            <div class="newBadge">New</div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>
-        <div class="blockItem">
-            <div class="blockHeight">Height: <span>2853717</span> </div>
-            <div class="blockHash">Hash: <span>52e5f8a0<span>...</span>4fc3d0b0</span></div>
-            <div class="blockTxs">Transactions: <span>59</span></div>
-            <div class="blockAge">Created: <span>3 minutes ago</span></div>
-        </div>-->
-
     </div>
 </div>
-<div class="loading" id="loading">Loading…</div>
  

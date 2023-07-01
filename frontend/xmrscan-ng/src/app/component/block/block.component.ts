@@ -38,6 +38,9 @@ export class BlockComponent {
         },
         () => {
           sessionStorage.setItem(this.blockHeight!, JSON.stringify(this.block));
+          //if (this.block.status)
+          console.log(this.block.status);
+          
         }
       );
     } else {
@@ -49,6 +52,21 @@ export class BlockComponent {
     this.blockHeight = this.route.snapshot.paramMap.get('id');
     this.loadBlock();
     window.scrollTo(0, 0);
+  }
+
+  copyText(text: string) {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        this.showBlockPopUp();
+      })
+      .catch(() => {
+      });
+  }
+
+  showBlockPopUp() {    
+    document.getElementById('blockCopyPopUp')?.classList.add('active');
+    setTimeout(function () { document.getElementById('blockCopyPopUp')?.classList.remove('active'); }, 1000);
   }
 
 }

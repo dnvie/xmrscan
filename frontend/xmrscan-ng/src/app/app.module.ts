@@ -8,6 +8,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { BlocksComponent } from './component/blocks/blocks.component';
 import { BlockComponent } from './component/block/block.component';
 import { TransactionComponent } from './component/transaction/transaction.component';
+import { MempoolComponent } from './component/mempool/mempool.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TransactionComponent } from './component/transaction/transaction.compon
     BlocksComponent,
     BlockComponent,
     TransactionComponent,
+    MempoolComponent,
   ],
   imports: [
     BrowserModule,

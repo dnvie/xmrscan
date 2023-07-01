@@ -96,5 +96,29 @@ func GetBlockByNumber(number int) (int, data.BlockInfo) {
 		block.Data.RelativeTime = relativeTime
 		return resp.StatusCode, block
 	}
+}
 
+func GetMempool() (int, data.Mempool) {
+	var returnMempool data.Mempool
+	returnMempool.Status = "fail"
+
+	resp, err := http.Get("https://xmrchain.net/api/mempool")
+	if err != nil {
+		return resp.StatusCode, returnMempool
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return resp.StatusCode, returnMempool
+	}
+
+	var mempool data.Mempool
+	if err := json.Unmarshal(body, &mempool); err != nil {
+		return resp.StatusCode, returnMempool
+	} else if mempool.Status == "fail" {
+		return resp.StatusCode, returnMempool
+	} else {
+		return resp.StatusCode, mempool
+	}
 }

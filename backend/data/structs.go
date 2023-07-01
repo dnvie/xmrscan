@@ -77,17 +77,10 @@ type Tx struct {
 			//Amount    int64  `json:"amount"`
 			PublicKey string `json:"public_key"`
 		} `json:"outputs"`
-		//PaymentID    string `json:"payment_id"`
 		PaymentID8 string `json:"payment_id8"`
-		//RctType      int64  `json:"rct_type"`
-		//Timestamp    int64  `json:"timestamp"`
-		//TimestampUtc string `json:"timestamp_utc"`
-		TxFee  int64  `json:"tx_fee"`
-		TxHash string `json:"tx_hash"`
-		TxSize int64  `json:"tx_size"`
-		//TxVersion    int64  `json:"tx_version"`
-		//XmrInputs    int64  `json:"xmr_inputs"`
-		//XmrOutputs   int64  `json:"xmr_outputs"`
+		TxFee      int64  `json:"tx_fee"`
+		TxHash     string `json:"tx_hash"`
+		TxSize     int64  `json:"tx_size"`
 	} `json:"data"`
 	Status string `json:"status"`
 }
@@ -110,6 +103,19 @@ type BlockInfo struct {
 		RelativeTime string
 		Txs          []struct {
 		} `json:"txs"`
+	} `json:"data"`
+	Status string `json:"status"`
+}
+
+type Mempool struct {
+	Data struct {
+		Txs []struct {
+			Coinbase   bool   `json:"coinbase"`
+			PaymentID8 string `json:"payment_id8"`
+			TxHash     string `json:"tx_hash"`
+			TxSize     int64  `json:"tx_size"`
+		} `json:"txs"`
+		TxsNo int `json:"txs_no"`
 	} `json:"data"`
 	Status string `json:"status"`
 }

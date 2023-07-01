@@ -96,3 +96,24 @@ func GetBlocks(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(w, "\nError: Could not fetch Blocks\n")
 	}
 }
+
+func GetMempool(w http.ResponseWriter, r *http.Request) {
+	var response int
+	var mempool data.Mempool
+
+	response, mempool = service.GetMempool()
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(response)
+
+	if response == 200 {
+		mempoolJSON, err := json.Marshal(mempool)
+		if err != nil {
+			io.WriteString(w, "Received Invalid Mempool JSON Object")
+		} else {
+			w.Write(mempoolJSON)
+		}
+	} else {
+		io.WriteString(w, "\nError: Could not fetch Mempool\n")
+	}
+}

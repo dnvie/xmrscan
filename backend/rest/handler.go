@@ -28,6 +28,7 @@ func Serve() {
 		r.Get("/", GetBlocks)
 		r.Get("/{page}", GetBlocks)
 	})
+	r.Get("/mempool", GetMempool)
 
 	http.ListenAndServe(":3000", r)
 }

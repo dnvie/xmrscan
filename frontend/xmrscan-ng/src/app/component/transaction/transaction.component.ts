@@ -46,4 +46,29 @@ export class TransactionComponent implements OnInit{
     window.scrollTo(0, 0);
   }
 
+  copyText(text: string, type: number) {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        if (type == 1) {
+          this.showTxPopUp();
+        } else if (type == 2) {
+          this.showTxHashPopUp();
+        }
+        
+      })
+      .catch(() => {
+      });
+  }
+
+  showTxPopUp() {    
+    document.getElementById('transactionCopyPopUp')?.classList.add('active');
+    setTimeout(function () { document.getElementById('transactionCopyPopUp')?.classList.remove('active'); }, 1000);
+  }
+
+  showTxHashPopUp() {    
+    document.getElementById('transactionHashCopyPopUp')?.classList.add('active');
+    setTimeout(function () { document.getElementById('transactionHashCopyPopUp')?.classList.remove('active'); }, 1000);
+  }
+
 }

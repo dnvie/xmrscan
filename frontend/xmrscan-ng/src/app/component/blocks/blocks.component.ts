@@ -21,17 +21,16 @@ export class BlocksComponent implements OnInit {
 
   loadBlocks() {
     if (sessionStorage.getItem('blocks') == null) {
-      document.getElementById('loading')!.classList.add('active');
+      document.getElementById('LatestBlocks')!.innerText = "Loading...";
       this.service.getBlocks(undefined).subscribe(
         data => {
           this.blocks = data
         },
         error => {
           console.log("error loading network info", error);
-          document.getElementById('loading')!.classList.remove('active');
         },
         () => {
-          document.getElementById('loading')!.classList.remove('active');
+          document.getElementById('LatestBlocks')!.innerText = "Latest Blocks";
           sessionStorage.setItem('blocks', JSON.stringify(this.blocks));
         }
       );

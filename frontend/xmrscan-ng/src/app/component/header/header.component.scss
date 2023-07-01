@@ -1,3 +1,24 @@
+/*#scrollProgress {
+    height: 3px;
+    width: 0%;
+}
+
+#scrollProgressBlur {
+    height: 2px;
+    width: 0%;
+    filter: blur(15px);
+}
+
+.scrollProgress {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    background-color: var(--infoItemNetworkTextSpan);
+    z-index: 100;
+    border-radius: 0 5px 5px 0;
+    transition: all 0.05s ease;
+}*/
+
 .header {
     position: fixed;
     display: flex;
@@ -56,6 +77,9 @@ input:focus::placeholder {
     height: 30px;
     margin-right: 20px;
     text-align: right;
+    :hover {
+        cursor: pointer;
+    }
 }
 
 .logo {
@@ -115,11 +139,13 @@ input:focus::placeholder {
 .gradientLeft {
     left: 0;
     background: var(--infoContainerGradientLeft);
+    z-index: 2;
 }
 
 .gradientRight {
     right: 0;
     background: var(--infoContainerGradientRight);
+    z-index: 2;
 }
 
 .gradientItem {
@@ -198,6 +224,12 @@ input:focus::placeholder {
     .searchBar {
         width: 100%;
         margin-right: 20px;
+        text-align: left;
+        text-indent: 20px;
+    }
+
+    ::placeholder {
+        text-align: center;
     }
 
     .logoContainer {

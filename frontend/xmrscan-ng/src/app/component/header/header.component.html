@@ -1,5 +1,7 @@
+<!--<div id="scrollProgress" class="scrollProgress"></div>
+<div id="scrollProgressBlur" class="scrollProgress"></div>-->
 <div class="header">
-    <div class="menuContainer">
+    <div class="menuContainer" (click)="switchTheme()">
         <svg class="menu" id="menuIcon" width="20" height="16" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="15" height="2" rx="1" fill="#D9D9D9"/>
             <rect y="5" width="15" height="2" rx="1" fill="#D9D9D9"/>
@@ -7,7 +9,7 @@
             </svg>
     </div>
     <input type="text" class="searchBar" placeholder="Search for a Block or Transaction">
-    <div class="logoContainer">
+    <div class="logoContainer" routerLink="/">
         <svg class="logo" width="67" height="23" viewBox="0 0 67 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_1_12)">
             <path d="M28.4526 13.3334H31.0115C31.1289 14.5334 31.9505 15.2889 33.2652 15.2889C34.4624 15.2889 35.2606 14.8222 35.2606 13.9334C35.2606 11.6222 28.8048 13.4 28.8048 8.75557C28.8048 6.80002 30.5889 5.42224 33.1009 5.42224C35.7771 5.42224 37.6082 6.88891 37.6786 9.13335H35.1432C35.0493 8.20002 34.2981 7.60002 33.1243 7.60002C32.0679 7.60002 31.4106 8.06669 31.4106 8.75557C31.4106 11.2222 37.9603 9.22224 37.9603 13.8889C37.9603 16.0889 36.0823 17.4667 33.2887 17.4667C30.4481 17.4667 28.57 15.8222 28.4526 13.3334Z" fill="#F26722"/>

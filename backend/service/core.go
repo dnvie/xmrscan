@@ -85,7 +85,7 @@ func GetBlocks(r *http.Request) (int, data.Blocks) {
 	height := -1
 	resp, info := GetNetworkInfo()
 	if resp == 200 {
-		height = info.Data.Height - 1 - page*25
+		height = (info.Data.Height - 1) - page*25
 	}
 
 	wg := new(sync.WaitGroup)

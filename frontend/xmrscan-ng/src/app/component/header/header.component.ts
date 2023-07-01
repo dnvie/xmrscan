@@ -29,7 +29,7 @@ export class HeaderComponent {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) {
         if (!router.navigated) {
-          sessionStorage.removeItem('blocks');
+          sessionStorage.clear();
         }
       }
       if (event instanceof NavigationEnd) {
@@ -66,6 +66,18 @@ export class HeaderComponent {
     document.getElementById('infoContainer')?.classList.remove('scrolled');
   }
 
+  switchTheme() {
+    console.log("themeswitch");
+    
+    if (document.documentElement.getAttribute('data-theme') == 'dark') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+  } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+  }
+  }
+
   /*@HostListener('window:scroll', ['$event']) onScrollEvent($event: any) {
     this.scrollFunction()
   }
@@ -82,6 +94,14 @@ export class HeaderComponent {
         this.visible = true
       }
     }
+    var winScroll = document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100 * 1;
+    document.getElementById('scrollProgress')!.style.width = scrolled + "%";
+    document.getElementById('scrollProgressBlur')!.style.width = scrolled + "%";
+    //console.log(scrolled + "%");
+    
+    
   }*/
 
   onWheel(event: WheelEvent): void {
@@ -91,6 +111,8 @@ export class HeaderComponent {
   }
 
   public ngOnInit(): void {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
     //this.initScroll();
     /*this.service.getNetworkInfo().subscribe(
       data => {
