@@ -10,6 +10,7 @@ import { NetworkService } from 'src/app/service/network.service';
 })
 export class HeaderComponent {
 
+  darkMode = true;
   visible = true
   delay = 40
   info: NetworkInfo = {
@@ -38,6 +39,7 @@ export class HeaderComponent {
         } else {
           this.removeScroll();
         }
+        this.collapseSidebar();
       }
   });
   }
@@ -72,10 +74,20 @@ export class HeaderComponent {
     if (document.documentElement.getAttribute('data-theme') == 'dark') {
       document.documentElement.setAttribute('data-theme', 'light');
       localStorage.setItem('theme', 'light');
-  } else {
+      this.darkMode = false;
+    } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
+      this.darkMode = true;
+    }
   }
+
+  expandSidebar() {
+    document.getElementById('sidebar')?.classList.add('active');
+  }
+
+  collapseSidebar() {
+    document.getElementById('sidebar')?.classList.remove('active');
   }
 
   /*@HostListener('window:scroll', ['$event']) onScrollEvent($event: any) {

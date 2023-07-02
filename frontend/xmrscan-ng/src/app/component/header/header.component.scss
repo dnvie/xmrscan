@@ -31,7 +31,6 @@
     align-items: center;
 }
 
-//to-do: Fix menu svg
 .menuContainer {
     display: flex;
     width: 110px;
@@ -39,6 +38,17 @@
     margin-left: 20px;
     text-align: left;
     align-items: center;
+}
+
+.menu {
+    transition: all 0.15s;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+    color: var(--infoItemTextSpan);
+}
+
+.menu:hover {
+    cursor: pointer;
+    filter: var(--blocksListHoverFilter);
 }
 
 .searchBar {
@@ -187,7 +197,6 @@ input:focus::placeholder {
 
 .infoItem:nth-child(2) {
     display: block;
-    /*display: none*/
 }
 
 .infoItem.scrolled {
@@ -213,6 +222,74 @@ input:focus::placeholder {
     span {
         color: var(--infoItemPriceDownTextSpan);
     }
+}
+
+.sidebar {
+    width: 220px;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: -220px;
+    top: 0;
+    background-color: var(--background);
+    box-shadow: 10px 0 20px 10px rgba(0, 0, 0, 0.14);
+    border-radius: 0px 12px 12px 0px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    pointer-events: none;
+    transition: all 0.15s;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+    .collapseSidebarField {
+        position: fixed;
+        width: 100%;
+        left: 220px;
+        height: 100%;
+        background-color: none;
+        z-index: -1;
+    }
+    .sidebarItemContainer {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .sidebarItem {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        width: 175px;
+        height: 60px;
+        background-color: var(--blockItemBackground);
+        color: var(--infoItemTextSpan);
+        font-family: var(--sans-serif);
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: 12px;
+        transition: all 0.05s linear;
+        box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.18);
+    }
+    .sidebarItem:hover {
+        filter: var(--blocksListHoverFilter);
+        cursor: pointer;
+    }
+    .closeButton {
+        margin-bottom: 20px;
+        background-color: var(--infoItemTextSpan);
+        color: var(--blockItemBackground);
+    }
+}
+
+.sidebar.active {
+    user-select: initial;
+    pointer-events: initial;
+    left: 0px;
 }
 
 @media only screen and (max-width: 950px) {

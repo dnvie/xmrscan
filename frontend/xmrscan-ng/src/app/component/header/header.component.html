@@ -1,12 +1,8 @@
 <!--<div id="scrollProgress" class="scrollProgress"></div>
 <div id="scrollProgressBlur" class="scrollProgress"></div>-->
 <div class="header">
-    <div class="menuContainer" (click)="switchTheme()">
-        <svg class="menu" id="menuIcon" width="20" height="16" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="15" height="2" rx="1" fill="#D9D9D9"/>
-            <rect y="5" width="15" height="2" rx="1" fill="#D9D9D9"/>
-            <rect y="10" width="15" height="2" rx="1" fill="#D9D9D9"/>
-            </svg>
+    <div class="menuContainer" (click)="expandSidebar()">
+        <div class="menu"><span class="material-symbols-rounded">menu</span></div>
     </div>
     <input type="text" class="searchBar" placeholder="Search for a Block or Transaction">
     <div class="logoContainer" routerLink="/">
@@ -43,3 +39,14 @@
 <div class="infoContainerGradient" id="infoContainerGradient"></div>
 <div class="gradientLeft gradientItem"></div>
 <div class="gradientRight gradientItem"></div>
+
+<div class="sidebar" id="sidebar">
+    <div class="collapseSidebarField" (click)="collapseSidebar()"></div>
+    <div class="sidebarItemContainer">
+        <div *ngIf="darkMode" class="sidebarItem" (click)="switchTheme()">Light Mode<span class="material-symbols-sharp">light_mode</span></div>
+        <div *ngIf="!darkMode" class="sidebarItem" (click)="switchTheme()">Dark Mode<span class="material-symbols-sharp">dark_mode</span></div>
+        <div class="sidebarItem" routerLink="/mempool">Mempool<span class="material-symbols-sharp">pool</span></div>
+        <div class="sidebarItem">TestNet<span class="material-symbols-sharp">bug_report</span></div>
+    </div>
+    <div class="sidebarItem closeButton" (click)="collapseSidebar()">Close<span class="material-symbols-sharp">close</span></div>
+</div>

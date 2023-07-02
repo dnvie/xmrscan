@@ -14,7 +14,7 @@
 
 .blockPath {
     position: absolute;
-    color: white;
+    color: var(--blockItemText);
     font-family: var(--sans-serif);
     font-size: 14px;
     top: -15px;
