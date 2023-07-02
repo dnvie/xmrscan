@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import { Block } from '../data/block';
-import { BlockInfo, Blocks } from '../data/blocks';
+import { Blocks } from '../data/blocks';
 
 
 const baseUrl = 'http://localhost:3000';

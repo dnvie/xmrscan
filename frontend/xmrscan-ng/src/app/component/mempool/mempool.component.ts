@@ -16,6 +16,7 @@ export class MempoolComponent implements OnInit {
   ) { }
 
   loadMempool() {
+    window.scrollTo(0, 0);
     this.service.getMempool().subscribe(
       data => {
         this.mempool = data

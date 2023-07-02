@@ -117,3 +117,22 @@ func GetMempool(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(w, "\nError: Could not fetch Mempool\n")
 	}
 }
+
+func GetSearchResult(w http.ResponseWriter, r *http.Request) {
+	response, searchResult := service.GetSearchResult(r)
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(response)
+
+	if response == 200 {
+		searchResult, err := json.Marshal(searchResult)
+		if err != nil {
+			io.WriteString(w, "Received Invalid Search Result JSON Object")
+		} else {
+			w.Write(searchResult)
+		}
+	} else {
+		io.WriteString(w, "\nError: Search Query is not a valid Transaction/Block Hash or Block Height\n")
+	}
+
+}

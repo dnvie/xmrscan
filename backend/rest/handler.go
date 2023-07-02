@@ -29,6 +29,7 @@ func Serve() {
 		r.Get("/{page}", GetBlocks)
 	})
 	r.Get("/mempool", GetMempool)
+	r.Get("/search/{query}", GetSearchResult)
 
 	http.ListenAndServe(":3000", r)
 }

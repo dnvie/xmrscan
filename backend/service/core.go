@@ -106,3 +106,44 @@ func GetBlocks(r *http.Request) (int, data.Blocks) {
 
 	return 200, returnBlocks
 }
+
+func GetSearchResult(r *http.Request) (int, data.SearchResult) {
+	var returnSearchResult data.SearchResult
+
+	url := fmt.Sprintf("https://xmrchain.net/api/search/%s", chi.URLParam(r, "query"))
+	resp, err := http.Get(url)
+	if err != nil {
+		return resp.StatusCode, returnSearchResult
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return resp.StatusCode, returnSearchResult
+	}
+
+	var result data.BlockSearch
+	var searchResult data.SearchResult
+	if err := json.Unmarshal(body, &result); err != nil {
+		return 400, returnSearchResult
+	} else {
+		if result.Data.Hash == "" {
+			var result data.TxSearch
+			if err := json.Unmarshal(body, &result); err != nil {
+				return 400, returnSearchResult
+			} else {
+				if result.Data.TxHash == "" {
+					return 400, returnSearchResult
+				} else {
+					searchResult.Tx = result
+					searchResult.Type = 1
+					return resp.StatusCode, searchResult
+				}
+			}
+		} else {
+			searchResult.Block = result
+			searchResult.Type = 0
+			return resp.StatusCode, searchResult
+		}
+	}
+}

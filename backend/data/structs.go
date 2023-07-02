@@ -119,3 +119,22 @@ type Mempool struct {
 	} `json:"data"`
 	Status string `json:"status"`
 }
+
+type TxSearch struct {
+	Data struct {
+		TxHash string `json:"tx_hash"`
+	} `json:"data"`
+}
+
+type BlockSearch struct {
+	Data struct {
+		BlockHeight int64  `json:"block_height"`
+		Hash        string `json:"hash"`
+	} `json:"data"`
+}
+
+type SearchResult struct {
+	Type  int64
+	Block BlockSearch
+	Tx    TxSearch
+}

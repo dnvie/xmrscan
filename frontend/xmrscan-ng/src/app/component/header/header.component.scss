@@ -63,6 +63,12 @@
     animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
 }
 
+.searchBar.error {
+    background-color: var(--errorBackground);
+    user-select: none;
+    pointer-events: none;
+}
+
 .searchBar:focus {
     box-shadow: 0px 10px 10px var(--searchBarBoxShadow);
     background-color: var(--searchBarFocus);

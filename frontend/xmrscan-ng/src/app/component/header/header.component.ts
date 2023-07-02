@@ -1,7 +1,9 @@
 import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { NetworkInfo, Price } from 'src/app/data/networkInfo';
+import { Search } from 'src/app/data/search';
 import { NetworkService } from 'src/app/service/network.service';
+import { SearchService } from 'src/app/service/search.service';
 
 @Component({
   selector: 'app-header',
@@ -21,11 +23,17 @@ export class HeaderComponent {
     current_price: undefined,
     price_change_percentage_24h: undefined
   }
+  searchResult: Search = {
+    Type: 0,
+    Block: undefined,
+    Tx: undefined
+  }
 
   constructor(
     private service: NetworkService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private sService: SearchService
   ) {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) {
@@ -34,7 +42,7 @@ export class HeaderComponent {
         }
       }
       if (event instanceof NavigationEnd) {
-        if (this.router.url != '/') {
+        if (this.router.url != '/' && !this.router.url.includes('blocks')) {
           this.addScroll();
         } else {
           this.removeScroll();
@@ -88,6 +96,36 @@ export class HeaderComponent {
 
   collapseSidebar() {
     document.getElementById('sidebar')?.classList.remove('active');
+  }
+
+  search(event: KeyboardEvent, searchValue: string) {    
+    if (event.keyCode === 13 || event.key === 'Enter' || event.code === 'Enter') {
+      this.sService.getSearchResult(searchValue).subscribe(
+        data => {
+          this.searchResult = data;
+          if (this.searchResult.Type == 0) {
+            this.router.navigate(['block/' + this.searchResult.Block?.data?.block_height])
+          } else if (this.searchResult.Type == 1) {
+            this.router.navigate(['transaction/' + this.searchResult.Tx?.data?.tx_hash])
+          } else {
+            this.searchError();
+          }
+        },
+        error => {
+          this.searchError();
+        }
+      );
+    }
+  }
+
+  searchError() {
+    let searchBar = document.getElementById('searchBar') as HTMLInputElement;
+    searchBar?.blur();
+    searchBar!.value = 'Please check your input';
+    searchBar?.classList.add('error');
+    setTimeout(function(){searchBar?.classList.remove('error');}, 1000);
+    setTimeout(function(){searchBar!.value = ''}, 1000);
+    setTimeout(function(){searchBar?.focus()}, 1000);
   }
 
   /*@HostListener('window:scroll', ['$event']) onScrollEvent($event: any) {
