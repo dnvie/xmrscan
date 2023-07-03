@@ -238,7 +238,7 @@ input:focus::placeholder {
     left: -220px;
     top: 0;
     background-color: var(--background);
-    box-shadow: 10px 0 20px 10px rgba(0, 0, 0, 0.14);
+    box-shadow:var(--sidebarShadow);
     border-radius: 0px 12px 12px 0px;
     display: flex;
     flex-direction: column;

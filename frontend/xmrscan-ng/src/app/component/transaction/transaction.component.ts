@@ -11,6 +11,9 @@ import { TransactionService } from 'src/app/service/transaction.service';
 export class TransactionComponent implements OnInit{
 
   txHash: string | null = ''
+  loaded = false;
+  skeletons1: any[] = Array(2).fill({});
+  skeletons2: any[] = Array(5).fill({});
 
   transaction: Transaction = {
     data: undefined
@@ -26,7 +29,7 @@ export class TransactionComponent implements OnInit{
       this.service.getTx(this.txHash).subscribe(
         data => {
             this.transaction = data
-            console.log(this.transaction);
+            this.loaded = true;
         },
         error => {
           console.log("error loading transaction", error);
@@ -37,6 +40,7 @@ export class TransactionComponent implements OnInit{
       );
     } else {
       this.transaction = JSON.parse(sessionStorage.getItem(this.txHash!)!);
+      this.loaded = true;
     }
   }
 

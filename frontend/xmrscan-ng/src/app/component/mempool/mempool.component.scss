@@ -1,6 +1,8 @@
 .main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-top: 150px;
     position: relative;
     width: 100%;
@@ -53,6 +55,7 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    align-items: center;
     width: 100%;
     height: 50px;
     border-radius: 10px;
@@ -101,6 +104,114 @@
 .count {
     color: var(--blockItemTextSpanSpan);
 }
+
+.blockPathSkeletonContainer {
+    position: absolute;
+    top: -15px;
+    height: 18px;
+    z-index: 2;
+    width: 900px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.blockPathSkeleton {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 160px;
+    background-color: var(--skeletonBackground);
+    border-radius: 10px;
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        opacity: var(--skeletonOpacity);
+        filter: var(--skeletonFilter);
+        background-image: linear-gradient(
+          90deg,
+          rgba(rgba(255, 255, 255), 0) 0,
+          rgba(rgba(255, 255, 255), 0.2) 20%,
+          rgba(rgba(255, 255, 255), 0.5) 60%,
+          rgba(rgba(255, 255, 255), 0)
+        );
+        animation: shimmer 1s infinite ease-in-out;
+        content: '';
+      }
+}
+
+.headingSkeleton {
+    height: 31px;
+    width: 300px;
+    background-color: var(--skeletonBackground);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin: 26px 0;
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        opacity: var(--skeletonOpacity);
+        filter: var(--skeletonFilter);
+        background-image: linear-gradient(
+          90deg,
+          rgba(rgba(255, 255, 255), 0) 0,
+          rgba(rgba(255, 255, 255), 0.2) 20%,
+          rgba(rgba(255, 255, 255), 0.5) 60%,
+          rgba(rgba(255, 255, 255), 0)
+        );
+        animation: shimmer 1s infinite ease-in-out;
+        content: '';
+      }
+}
+
+.skeleton {
+    height: 25px;
+    border-radius: 10px;
+    background-color: var(--skeletonItem);
+    position: relative;
+    overflow: hidden;
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        opacity: var(--skeletonOpacity);
+        filter: var(--skeletonFilter);
+        background-image: linear-gradient(
+          90deg,
+          rgba(rgba(255, 255, 255), 0) 0,
+          rgba(rgba(255, 255, 255), 0.2) 20%,
+          rgba(rgba(255, 255, 255), 0.5) 60%,
+          rgba(rgba(255, 255, 255), 0)
+        );
+        animation: shimmer 1s infinite ease-in-out;
+        content: '';
+      }
+}
+
+.blockHashSkeleton {
+    width: 230px;
+}
+
+.blockSizeSkeleton {
+    width: 130px;
+}
+
+@keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
 
 @media only screen and (max-width: 950px) {
 

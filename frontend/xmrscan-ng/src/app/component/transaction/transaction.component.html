@@ -1,6 +1,45 @@
 <div class="main">
-    <div class="txPath"><span class="txBlocks" routerLink="/">Blocks</span><span class="txPathSpacer"> • </span><span *ngIf="transaction.data!.block_height != 0" class="txPathCurrentBlock" routerLink="/block/{{transaction.data!.block_height}}"> Block {{transaction.data!.block_height}}</span><span *ngIf="transaction.data!.block_height == 0" class="txPathCurrentBlock" routerLink="/mempool">Mempool</span><span class="txPathSpacer"> • </span><span class="txPathCurrentTx"> Transaction {{transaction.data!.tx_hash.substring(0,4)}}<span> ••• </span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-4,transaction.data!.tx_hash.length)}}</span></div>
-    <div class="tx" id="tx">
+    <div *ngIf="loaded" class="txPath"><span class="txBlocks" routerLink="/">Blocks</span><span class="txPathSpacer"> • </span><span *ngIf="transaction.data!.block_height != 0" class="txPathCurrentBlock" routerLink="/block/{{transaction.data!.block_height}}"> Block {{transaction.data!.block_height}}</span><span *ngIf="transaction.data!.block_height == 0" class="txPathCurrentBlock" routerLink="/mempool">Mempool</span><span class="txPathSpacer"> • </span><span class="txPathCurrentTx"> Transaction {{transaction.data!.tx_hash.substring(0,4)}}<span> ••• </span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-4,transaction.data!.tx_hash.length)}}</span></div>
+    <div *ngIf="!loaded" class="txPathSkeletonContainer">
+        <div class="txPathSkeleton"></div>
+    </div>
+
+    <div *ngIf="!loaded" class="tx" id="tx">
+        <div class="headingSkeleton"></div>
+        <div class="txInfoStatusConfirming skeletonBg">
+            <div class="txConfirmationsSkeleton skeleton"></div>
+            <div class="txConfirmationStatusSkeleton skeleton"></div>
+        </div>
+        <div class="txInfo">
+            <div class="txHash">
+                <div class="txHashSkeleton skeleton"></div>
+            </div>
+            <div class="txFee">
+                <div class="txFeeSkeleton skeleton"></div>
+            </div>
+            <div class="txPaymentID">
+                <div class="txPaymentIDSkeleton skeleton"></div>
+            </div>
+            <div class="txSize">
+                <div class="txSizeSkeleton skeleton"></div>
+            </div>
+        </div>
+        <div class="headingSkeleton"></div>
+        <div class="ioItem" *ngFor="let skeleton of skeletons1">
+            <div>
+                <div class="ioItemSkeleton skeleton"></div>
+            </div>
+        </div>
+        <div class="headingSkeleton"></div>
+        <div class="ioItem" *ngFor="let skeleton of skeletons2">
+            <div>
+                <div class="ioItemSkeleton skeleton"></div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div *ngIf="loaded" class="tx" id="tx">
         <div id="transactionCopyPopUp">Copied to Clipboard!</div>
         <p id="txHeaderText">Transaction: <span (click)="copyText(transaction.data!.tx_hash, 1)">{{transaction.data!.tx_hash.substring(0,4)}}<span class="dots"> ••• </span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-4,transaction.data!.tx_hash.length)}}</span></p>
         <div class="txCoinbaseBadge" *ngIf="transaction.data!.coinbase">Coinbase</div>

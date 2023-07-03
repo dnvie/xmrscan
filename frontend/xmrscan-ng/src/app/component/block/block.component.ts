@@ -11,6 +11,8 @@ import { BlocksService } from 'src/app/service/blocks.service';
 export class BlockComponent {
 
   blockHeight: string | null = ''
+  loaded = false;
+  skeletons: any[] = Array(7).fill({});
 
   block: Block = {
     data: undefined
@@ -30,21 +32,18 @@ export class BlockComponent {
       this.service.getBlock(this.blockHeight).subscribe(
         data => {
             this.block = data
-            console.log(this.block);
-            
+            this.loaded = true
         },
         error => {
           console.log("error loading block", error);
         },
         () => {
           sessionStorage.setItem(this.blockHeight!, JSON.stringify(this.block));
-          //if (this.block.status)
-          console.log(this.block.status);
-          
         }
       );
     } else {
       this.block = JSON.parse(sessionStorage.getItem(this.blockHeight!)!);
+      this.loaded = true
     }
   }
 

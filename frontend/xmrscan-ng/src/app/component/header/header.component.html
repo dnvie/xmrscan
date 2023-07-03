@@ -4,7 +4,7 @@
     <div class="menuContainer" (click)="expandSidebar()">
         <div class="menu"><span class="material-symbols-rounded">menu</span></div>
     </div>
-    <input type="text" class="searchBar" id="searchBar" placeholder="Search for a Block or Transaction" #searchInput (keydown)="search($event, searchInput.value)">
+    <input type="text" class="searchBar" id="searchBar" placeholder="Search for a Block or Transaction" #searchInput (keydown)="search($event, searchInput.value)" spellcheck="false">
     <div class="logoContainer" routerLink="/">
         <svg class="logo" width="67" height="23" viewBox="0 0 67 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_1_12)">

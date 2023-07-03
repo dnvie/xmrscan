@@ -10,6 +10,8 @@ import { MempoolService } from 'src/app/service/mempool.service';
 export class MempoolComponent implements OnInit {
 
   mempool: Mempool = {}
+  loaded = false;
+  skeletons: any[] = Array(25).fill({});
 
   constructor(
     private service: MempoolService
@@ -20,6 +22,7 @@ export class MempoolComponent implements OnInit {
     this.service.getMempool().subscribe(
       data => {
         this.mempool = data
+        this.loaded = true
       },
       error => {
         console.log("error loading mempool", error);

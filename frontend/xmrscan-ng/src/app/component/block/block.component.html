@@ -1,6 +1,42 @@
 <div class="main">
-    <div class="blockPath"><span class="blockPathBlocks" routerLink="/">Blocks</span><span class="blockPathSpacer"> • </span><span class="blockPathCurrentBlock"> Block {{block.data!.block_height}}</span></div>
-    <div class="block" id="block">
+    <div *ngIf="loaded" class="blockPath"><span class="blockPathBlocks" routerLink="/">Blocks</span><span class="blockPathSpacer"> • </span><span class="blockPathCurrentBlock"> Block {{block.data!.block_height}}</span></div>
+    
+    <div *ngIf="!loaded" class="blockPathSkeletonContainer">
+        <div class="blockPathSkeleton"></div>
+    </div>
+
+    <div *ngIf="!loaded" class="block" id="block">
+        <div class="headingSkeleton"></div>
+        <div class="blockInfo skeletonBg">
+            <div class="blockHash">
+                <div class="blockHashSkeleton skeleton"></div>
+            </div>
+            <div class="blockTxs">
+                <div class="blockTxsSkeleton skeleton"></div>
+            </div>
+            <div class="blockSize">
+                <div class="blockSizeSkeleton skeleton"></div>
+            </div>
+            <div class="blockAge">
+                <div class="blockAgeSkeleton skeleton"></div>
+            </div>
+        </div>
+        <div class="headingSkeleton"></div>
+        <div class="tx" *ngFor="let skeleton of skeletons">
+            <div class="txHash">
+                <div class="blockHashSkeleton skeleton"></div>
+            </div>
+            <div class="txPaymentID">
+                <div class="blockHashSkeleton skeleton"></div>
+            </div>
+            <div class="txSize">
+                <div class="blockSizeSkeleton skeleton"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="loaded" class="block" id="block">
         <p>Block: <span>{{block.data!.block_height}}</span><span class="previousBlock blockNavigation" [ngClass]="{'disabled': (block.data!.block_height-1 < 0)}"routerLink="/block/{{block.data!.block_height-1}}">←</span><span class="nextBlock blockNavigation" [ngClass]="{'disabled': (block.data!.block_height+1 >= block.data!.current_height)}" routerLink="/block/{{block.data!.block_height+1}}">→</span></p>
         <div class="blockInfo">
             <div id="blockCopyPopUp">Copied to Clipboard!</div>
