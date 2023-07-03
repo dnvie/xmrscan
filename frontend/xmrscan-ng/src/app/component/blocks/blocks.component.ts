@@ -10,6 +10,8 @@ import { BlocksService } from 'src/app/service/blocks.service';
 export class BlocksComponent implements OnInit {
 
   firstLoad = true
+  loaded = false;
+  skeletons: any[] = Array(25).fill({});
 
   blocks: Blocks = {
     Blocks: undefined
@@ -21,21 +23,21 @@ export class BlocksComponent implements OnInit {
 
   loadBlocks() {
     if (sessionStorage.getItem('blocks') == null) {
-      document.getElementById('LatestBlocks')!.innerText = "Loading...";
       this.service.getBlocks(undefined).subscribe(
         data => {
           this.blocks = data
+          this.loaded = true
         },
         error => {
           console.log("error loading network info", error);
         },
         () => {
-          document.getElementById('LatestBlocks')!.innerText = "Latest Blocks";
           sessionStorage.setItem('blocks', JSON.stringify(this.blocks));
         }
       );
     } else {
       this.blocks = JSON.parse(sessionStorage.getItem('blocks')!);
+      this.loaded = true
     }
   }
 

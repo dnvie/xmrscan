@@ -8,12 +8,31 @@ New Logo (simpler, black white?)
 New page to verify deposits and payments (blockchair api documentation + exploremonero implementation)
 Error Handling + Error Toasts/Notifications
 
-Maybe a Landing Page/Overview Page (not straight to blocks e.g oklink.com/btc)
+Maybe a Landing Page/Overview Page (not straight to blocks e.g oklink.com/btc) with 5 most recent blocks and transactions
 -->
 <div class="main">
-    <div class="blocks" id="blocks">
-        <p (click)="loadBlocks()" id="LatestBlocks">Latest Blocks:</p>
-            <div class="blockItem" id="blockItem{{i}}" routerLink="/block/{{block.data!.block_height}}" *ngFor="let block of blocks.Blocks; let i = index">
+    <div *ngIf="!loaded" class="blocks">
+        <div class="LatestBlocksSkeleton"></div>
+        <div class="blockItem skeletonItem" *ngFor="let skeleton of skeletons">
+            <div class="blockHeight skeletonDiv">
+                <div class="skeletonHeight skeleton"></div>
+            </div>
+            <div class="blockHash skeletonDiv">
+                <div class="skeletonHash skeleton"></div>
+            </div>
+            <div class="blockTxs skeletonDiv">
+                <div class="skeletonTxs skeleton"></div>
+            </div>
+            <div class="blockAge skeletonDiv">
+                <div class="skeletonAge skeleton"></div>
+            </div>
+        </div> 
+
+    </div>
+
+    <div *ngIf="loaded" class="blocks" id="blocks">
+        <p id="LatestBlocks">Latest Blocks:</p>
+        <div class="blockItem" id="blockItem{{i}}" routerLink="/block/{{block.data!.block_height}}" *ngFor="let block of blocks.Blocks; let i = index">
             <div class="blockHeight">Height: <span>{{block.data!.block_height}}</span> </div>
             <div class="blockHash">Hash: <span>{{block.data!.hash.substring(0, 8)}}<span>•••</span>{{block.data!.hash.substring(block.data!.hash.length-8, block.data!.hash.length)}}</span></div>
             <div class="blockTxs">Transactions: <span>{{block.data!.txs.length}}</span></div>
