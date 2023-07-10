@@ -20,8 +20,7 @@ export class HeaderComponent {
     status: undefined
   };
   price: Price = {
-    current_price: undefined,
-    price_change_percentage_24h: undefined
+    data: undefined
   }
   searchResult: Search = {
     Type: 0,
@@ -164,7 +163,7 @@ export class HeaderComponent {
     document.documentElement.setAttribute('data-theme', 'dark');
     localStorage.setItem('theme', 'dark');
     //this.initScroll();
-    /*this.service.getNetworkInfo().subscribe(
+    this.service.getNetworkInfo().subscribe(
       data => {
           this.info = data
       },
@@ -184,20 +183,20 @@ export class HeaderComponent {
           this.removeScroll()
         }
       }
-    );*/
-    /*this.service.getPrice().subscribe(
+    );
+    this.service.getPrice().subscribe(
       data => {
-          this.price = data
+        this.price.data = data.data
       },
       error => {
         console.log("error loading price info", error);
       },
       () => {
-        if(this.info.data != undefined) {
-          document.getElementById('info2span')!.innerText = this.price.current_price + "$";
-          (this.price.price_change_percentage_24h! < 0) ? document.getElementById('info2')?.classList.add('priceDown') : document.getElementById('info2')?.classList.add('priceUp')
+        if(this.price.data![0] != undefined) {
+          document.getElementById('info2span')!.innerText = this.price.data![0].last + "$";
+          (+this.price.data![0].last - +this.price.data![0].open24h <= 0) ? document.getElementById('info2')?.classList.add('priceDown') : document.getElementById('info2')?.classList.add('priceUp')
         }
       }
-    );*/
+    );
   }
 }

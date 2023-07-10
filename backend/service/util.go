@@ -46,7 +46,7 @@ func GetNetworkInfo() (int, data.NetworkInfo) {
 func GetPrice(r *http.Request) (int, data.Price) {
 	var returnPrice data.Price
 
-	resp, err := http.Get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=monero")
+	resp, err := http.Get("https://www.okx.com/api/v5/market/ticker?instId=XMR-USD-SWAP")
 
 	if err != nil {
 		return resp.StatusCode, returnPrice

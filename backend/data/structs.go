@@ -85,9 +85,11 @@ type Tx struct {
 	Status string `json:"status"`
 }
 
-type Price []struct {
-	CurrentPrice             float64 `json:"current_price"`
-	PriceChangePercentage24H float64 `json:"price_change_percentage_24h"`
+type Price struct {
+	Data []struct {
+		Last    string `json:"last"`
+		Open24h string `json:"open24h"`
+	} `json:"data"`
 }
 
 type Blocks struct {

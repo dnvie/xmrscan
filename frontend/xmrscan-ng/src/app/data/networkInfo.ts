@@ -31,6 +31,10 @@ export interface Data {
 }
 
 export interface Price {
-    current_price?:               number;
-    price_change_percentage_24h?: number;
+    data?: PriceData[];
+}
+
+export interface PriceData {
+    last: string;
+    open24h: string;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/app/data/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
 
@@ -21,7 +21,8 @@ export class TransactionComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private service: TransactionService
+    private service: TransactionService,
+    private router: Router,
   ) { }
 
   loadTx() {
@@ -33,6 +34,7 @@ export class TransactionComponent implements OnInit{
         },
         error => {
           console.log("error loading transaction", error);
+          this.router.navigate(['/']);
         },
         () => {
           sessionStorage.setItem(this.txHash!, JSON.stringify(this.transaction));

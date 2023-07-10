@@ -36,6 +36,7 @@ export class BlockComponent {
         },
         error => {
           console.log("error loading block", error);
+          this.router.navigate(['/']);
         },
         () => {
           sessionStorage.setItem(this.blockHeight!, JSON.stringify(this.block));
