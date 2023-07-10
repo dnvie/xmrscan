@@ -114,12 +114,8 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--background);
-    height: 110vh;
+    height: 100%;
 }
-
-/*::-webkit-scrollbar {
-    display: none;
-}*/
 
 ::-webkit-scrollbar {
     width: 5px;

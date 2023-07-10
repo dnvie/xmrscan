@@ -13,7 +13,6 @@ import { SearchService } from 'src/app/service/search.service';
 export class HeaderComponent {
 
   darkMode = true;
-  visible = true
   delay = 40
   info: NetworkInfo = {
     data: undefined,
@@ -41,7 +40,7 @@ export class HeaderComponent {
         }
       }
       if (event instanceof NavigationEnd) {
-        if (this.router.url != '/' && !this.router.url.includes('blocks')) {
+        if (this.router.url != '/') {
           this.addScroll();
         } else {
           this.removeScroll();
@@ -127,32 +126,6 @@ export class HeaderComponent {
     setTimeout(function(){searchBar?.focus()}, 1000);
   }
 
-  /*@HostListener('window:scroll', ['$event']) onScrollEvent($event: any) {
-    this.scrollFunction()
-  }
-
-  scrollFunction() {
-    if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
-      if (this.visible) {
-        this.addScroll()
-        this.visible = false
-      }
-    } else {
-      if (!this.visible) {
-        this.removeScroll()
-        this.visible = true
-      }
-    }
-    var winScroll = document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100 * 1;
-    document.getElementById('scrollProgress')!.style.width = scrolled + "%";
-    document.getElementById('scrollProgressBlur')!.style.width = scrolled + "%";
-    //console.log(scrolled + "%");
-    
-    
-  }*/
-
   onWheel(event: WheelEvent): void {
     if (event.deltaY > 0) document.getElementById('infoContainer')!.scrollLeft += 60;
     else document.getElementById('infoContainer')!.scrollLeft -= 60;
@@ -162,7 +135,6 @@ export class HeaderComponent {
   public ngOnInit(): void {
     document.documentElement.setAttribute('data-theme', 'dark');
     localStorage.setItem('theme', 'dark');
-    //this.initScroll();
     this.service.getNetworkInfo().subscribe(
       data => {
           this.info = data
@@ -180,7 +152,6 @@ export class HeaderComponent {
           document.getElementById('info8span')!.innerText = this.info.data.tx_pool_size.toString(10)
           document.getElementById('info9span')!.innerText = this.info.data.tx_pool_size_kbytes + " kB"
           document.getElementById('info10span')!.innerText = this.info.data.top_block_hash
-          this.removeScroll()
         }
       }
     );
@@ -193,8 +164,7 @@ export class HeaderComponent {
       },
       () => {
         if(this.price.data![0] != undefined) {
-          document.getElementById('info2span')!.innerText = this.price.data![0].last + "$";
-          (+this.price.data![0].last - +this.price.data![0].open24h <= 0) ? document.getElementById('info2')?.classList.add('priceDown') : document.getElementById('info2')?.classList.add('priceUp')
+          document.getElementById('info2span')!.innerText = (+this.price.data![0].last).toFixed(2) + "$";
         }
       }
     );

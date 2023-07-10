@@ -9,6 +9,7 @@ import { BlocksComponent } from './component/blocks/blocks.component';
 import { BlockComponent } from './component/block/block.component';
 import { TransactionComponent } from './component/transaction/transaction.component';
 import { MempoolComponent } from './component/mempool/mempool.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MempoolComponent } from './component/mempool/mempool.component';
     BlockComponent,
     TransactionComponent,
     MempoolComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

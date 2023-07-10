@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'block/:id', component: BlockComponent},
   {path: 'transaction/:id', component: TransactionComponent},
   {path: 'mempool', component: MempoolComponent},
-  //{ path: '**', pathMatch: 'full', component: PageNotFoundComponent },
+  { path: '**', pathMatch: 'full', redirectTo: '/' },
 ];
 
 @NgModule({
