@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 [data-theme="dark"] {
     --absolute: white;
@@ -51,8 +53,8 @@
     --skeletonOpacity: 0.1;
     --skeletonFilter: brightness(100);
 
-    --monospace: 'DM Mono';
-    --sans-serif: 'Inter';
+    --monospace: 'Space Mono';
+    --sans-serif: 'DM Sans';
 }
 
 [data-theme="light"] {
@@ -106,8 +108,8 @@
     --skeletonOpacity: 0.1;
     --skeletonFilter: brightness(0);
 
-    --monospace: 'DM Mono';
-    --sans-serif: 'Inter';
+    --monospace: 'Space Mono';
+    --sans-serif: 'DM Sans';
 }
 
 body {

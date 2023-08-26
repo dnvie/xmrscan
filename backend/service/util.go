@@ -12,15 +12,11 @@ import (
 	"github.com/nleeper/goment"
 )
 
-var (
-	g, _ = goment.New(time.Date(2015, 11, 10, 5, 30, 0, 0, time.UTC))
-)
-
 func GetNetworkInfo() (int, data.NetworkInfo) {
 	var returnNetworkInfo data.NetworkInfo
 	returnNetworkInfo.Status = "fail"
 
-	resp, err := http.Get("https://xmrchain.net/api/networkinfo")
+	resp, err := http.Get("https://moneroexplorer.org/api/networkinfo")
 	if err != nil {
 		return resp.StatusCode, returnNetworkInfo
 	}
@@ -70,7 +66,7 @@ func GetBlockByNumber(number int) (int, data.BlockInfo) {
 	var returnBlock data.BlockInfo
 	returnBlock.Status = "fail"
 
-	url := fmt.Sprintf("https://xmrchain.net/api/block/%s", strconv.Itoa(number))
+	url := fmt.Sprintf("https://moneroexplorer.org/api/block/%s", strconv.Itoa(number))
 	resp, err := http.Get(url)
 	if err != nil {
 		return resp.StatusCode, returnBlock
@@ -102,7 +98,7 @@ func GetMempool() (int, data.Mempool) {
 	var returnMempool data.Mempool
 	returnMempool.Status = "fail"
 
-	resp, err := http.Get("https://xmrchain.net/api/mempool")
+	resp, err := http.Get("https://moneroexplorer.org/api/mempool")
 	if err != nil {
 		return resp.StatusCode, returnMempool
 	}

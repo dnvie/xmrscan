@@ -9,18 +9,10 @@ type Block struct {
 		Timestamp     int64  `json:"timestamp"`
 		RelativeTime  string
 		Txs           []struct {
-			Coinbase bool `json:"coinbase"`
-			//Extra      string `json:"extra"`
-			//Mixin      int64  `json:"mixin"`
-			//PaymentID string `json:"payment_id"`
+			Coinbase   bool   `json:"coinbase"`
 			PaymentID8 string `json:"payment_id8"`
-			//RctType    int64  `json:"rct_type"`
-			//TxFee      int64  `json:"tx_fee"`
-			TxHash string `json:"tx_hash"`
-			TxSize int64  `json:"tx_size"`
-			//TxVersion  int64  `json:"tx_version"`
-			//XmrInputs  int64  `json:"xmr_inputs"`
-			//XmrOutputs int64  `json:"xmr_outputs"`
+			TxHash     string `json:"tx_hash"`
+			TxSize     int64  `json:"tx_size"`
 		} `json:"txs"`
 	} `json:"data"`
 	Status string `json:"status"`
@@ -62,19 +54,10 @@ type Tx struct {
 		Coinbase      bool  `json:"coinbase"`
 		Confirmations int64 `json:"confirmations"`
 		CurrentHeight int64 `json:"current_height"`
-		//Extra         string `json:"extra"`
-		Inputs []struct {
-			//Amount   int64  `json:"amount"`
+		Inputs        []struct {
 			KeyImage string `json:"key_image"`
-			//Mixins   []struct {
-			//BlockNo   int64  `json:"block_no"`
-			//PublicKey string `json:"public_key"`
-			//TxHash    string `json:"tx_hash"`
-			//} `json:"mixins"`
 		} `json:"inputs"`
-		//Mixin   int64 `json:"mixin"`
 		Outputs []struct {
-			//Amount    int64  `json:"amount"`
 			PublicKey string `json:"public_key"`
 		} `json:"outputs"`
 		PaymentID8 string `json:"payment_id8"`

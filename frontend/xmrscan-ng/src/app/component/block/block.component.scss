@@ -207,9 +207,9 @@
     line-height: 35px;
     width: 190px;
     border-radius: 10px;
-    top: 23px;
+    top: 24px;
     opacity: 0;
-    left: 66px;
+    left: 60px;
     background-color: var(--blockCopyPopup);
     font-size: 14px;
     font-weight: 400;
@@ -408,9 +408,10 @@
         }
     }
     #blockCopyPopUp {
-        width: 210px;
-        top: 12px;
-        left: 73px;
+        width: 230px;
+        top: 13px;
+        left: 70px;
+        font-size: 16px;
     }
     .blockNavigation {
         top: -4px;
@@ -469,7 +470,7 @@
         }
     }
     #blockCopyPopUp {
-        left: 66px;
+        left: 65px;
     }
 }
 
@@ -557,6 +558,6 @@
     #blockCopyPopUp {
         width: 190px;
         top: 13px;
-        left: 60px;
+        left: 57px;
     }
 }

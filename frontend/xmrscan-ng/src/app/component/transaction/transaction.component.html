@@ -41,8 +41,10 @@
     
     <div *ngIf="loaded" class="tx" id="tx">
         <div id="transactionCopyPopUp">Copied to Clipboard!</div>
-        <p id="txHeaderText">Transaction: <span (click)="copyText(transaction.data!.tx_hash, 1)">{{transaction.data!.tx_hash.substring(0,4)}}<span class="dots"> ••• </span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-4,transaction.data!.tx_hash.length)}}</span></p>
-        <div class="txCoinbaseBadge" *ngIf="transaction.data!.coinbase">Coinbase</div>
+        <div class="txHeaderContainer">
+            <p id="txHeaderText">Transaction: <span (click)="copyText(transaction.data!.tx_hash, 1)">{{transaction.data!.tx_hash.substring(0,4)}}<span class="dots"> ••• </span>{{transaction.data!.tx_hash.substring(transaction.data!.tx_hash.length-4,transaction.data!.tx_hash.length)}}</span></p>
+            <div class="txCoinbaseBadge" *ngIf="transaction.data!.coinbase">Coinbase</div>
+        </div>
         <div class="txInfoStatusConfirmed" *ngIf="(transaction.data!.confirmations) >= 10">
             <div class="txConfirmations" >{{transaction.data!.confirmations}}<span class="confirmed"> Confirmations</span></div>
             <div class="txConfirmationStatus">Confirmed</div>

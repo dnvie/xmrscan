@@ -51,13 +51,13 @@ export class HeaderComponent {
   }
 
   initScroll() {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 13; i++) {
       document.getElementById('info'+i)?.classList.add('scrolled');
     }
   }
 
   addScroll() {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 13; i++) {
       setTimeout(function () { document.getElementById('info'+i)?.classList.add('scrolled'); }, (i-1) * this.delay);
     }
     document.getElementById('infoContainerGradientSpacer')?.classList.add('scrolled');
@@ -66,7 +66,7 @@ export class HeaderComponent {
   }
 
   removeScroll() {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 13; i++) {
       setTimeout(function () { document.getElementById('info'+i)?.classList.remove('scrolled'); }, (i-1) * this.delay);
     }
     document.getElementById('infoContainerGradientSpacer')?.classList.remove('scrolled');
@@ -152,6 +152,9 @@ export class HeaderComponent {
           document.getElementById('info8span')!.innerText = this.info.data.tx_pool_size.toString(10)
           document.getElementById('info9span')!.innerText = this.info.data.tx_pool_size_kbytes + " kB"
           document.getElementById('info10span')!.innerText = this.info.data.top_block_hash
+          document.getElementById('info11span')!.innerText = this.info.data.block_size_limit.toString(10) + " kB"
+          document.getElementById('info12span')!.innerText = this.info.data.block_size_median.toString(10) + " kB"
+          document.getElementById('info13span')!.innerText = this.info.data.alt_blocks_count.toString(10)
         }
       }
     );
