@@ -8,3 +8,5 @@ Monero ($XMR) Blockchain Explorer
 - Frontend written with angular, backend written in go
 - Clean, fully responsive ui
 - Supports light and dark mode
+
+- View the live site here: https://xmrscan.com
