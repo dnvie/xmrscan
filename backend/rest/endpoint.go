@@ -45,7 +45,7 @@ func GetTx(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPrice(w http.ResponseWriter, r *http.Request) {
-	response, price := service.GetPrice(r)
+	response, price := service.GetPrice()
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(response)
 	if response == 200 {
@@ -62,9 +62,14 @@ func GetPrice(w http.ResponseWriter, r *http.Request) {
 
 func GetNetworkInfo(w http.ResponseWriter, r *http.Request) {
 	response, info := service.GetNetworkInfo()
+	response2, price := service.GetPrice()
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(response)
 	if response == 200 {
+		if response2 == 200 {
+			info.Data.Price = price.Data[0].Last
+		}
 		infoJSON, err := json.Marshal(info)
 		if err != nil {
 			io.WriteString(w, "Received Invalid Network Info JSON Object")

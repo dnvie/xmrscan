@@ -13,33 +13,40 @@ import (
 )
 
 func GetNetworkInfo() (int, data.NetworkInfo) {
+	maxRetries := 3
+	retryInterval := time.Millisecond * 250
 	var returnNetworkInfo data.NetworkInfo
-	returnNetworkInfo.Status = "fail"
 
-	resp, err := http.Get("https://moneroexplorer.org/api/networkinfo")
-	if err != nil {
-		return resp.StatusCode, returnNetworkInfo
-	}
-	defer resp.Body.Close()
+	for retries := 0; retries < maxRetries; retries++ {
+		resp, err := http.Get("https://xmrchain.net/api/networkinfo")
+		if err != nil {
+			return resp.StatusCode, returnNetworkInfo
+		}
+		defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return resp.StatusCode, returnNetworkInfo
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return resp.StatusCode, returnNetworkInfo
+		}
+
+		var networkInfo data.NetworkInfo
+		if err := json.Unmarshal(body, &networkInfo); err != nil {
+			return resp.StatusCode, returnNetworkInfo
+		}
+
+		if resp.StatusCode == 200 && networkInfo.Data.Height > 1 {
+			return resp.StatusCode, networkInfo
+		}
+
+		if retries < maxRetries-1 {
+			time.Sleep(retryInterval)
+		}
 	}
 
-	var networkInfo data.NetworkInfo
-	if err := json.Unmarshal(body, &networkInfo); err != nil {
-		return resp.StatusCode, returnNetworkInfo
-	}
-
-	if resp.StatusCode == 200 {
-		return resp.StatusCode, networkInfo
-	} else {
-		return resp.StatusCode, returnNetworkInfo
-	}
+	return http.StatusServiceUnavailable, returnNetworkInfo
 }
 
-func GetPrice(r *http.Request) (int, data.Price) {
+func GetPrice() (int, data.Price) {
 	var returnPrice data.Price
 
 	resp, err := http.Get("https://www.okx.com/api/v5/market/ticker?instId=XMR-USD-SWAP")
@@ -66,7 +73,7 @@ func GetBlockByNumber(number int) (int, data.BlockInfo) {
 	var returnBlock data.BlockInfo
 	returnBlock.Status = "fail"
 
-	url := fmt.Sprintf("https://moneroexplorer.org/api/block/%s", strconv.Itoa(number))
+	url := fmt.Sprintf("https://xmrchain.net/api/block/%s", strconv.Itoa(number))
 	resp, err := http.Get(url)
 	if err != nil {
 		return resp.StatusCode, returnBlock
@@ -98,7 +105,7 @@ func GetMempool() (int, data.Mempool) {
 	var returnMempool data.Mempool
 	returnMempool.Status = "fail"
 
-	resp, err := http.Get("https://moneroexplorer.org/api/mempool")
+	resp, err := http.Get("https://xmrchain.net/api/mempool")
 	if err != nil {
 		return resp.StatusCode, returnMempool
 	}

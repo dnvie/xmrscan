@@ -12,7 +12,7 @@ func Serve() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"https://*", "http://*"},
+		AllowedOrigins:   []string{"https://www.xmrscan.com", "http://www.xmrscan.com", "https://*.xmrscan.com", "http://*.xmrscan.com", "https://xmrscan.com", "http://xmrscan.com"},
 		AllowedMethods:   []string{"GET"},
 		AllowedHeaders:   []string{"Accept", "Content-Type", "X-CSRF-Token"},
 		ExposedHeaders:   []string{"Link"},
@@ -22,7 +22,6 @@ func Serve() {
 
 	r.Get("/block/{height}", GetBlock)
 	r.Get("/transaction/{hash}", GetTx)
-	r.Get("/price", GetPrice)
 	r.Get("/networkInfo", GetNetworkInfo)
 	r.Route("/blocks", func(r chi.Router) {
 		r.Get("/", GetBlocks)
@@ -31,5 +30,5 @@ func Serve() {
 	r.Get("/mempool", GetMempool)
 	r.Get("/search/{query}", GetSearchResult)
 
-	http.ListenAndServe(":3000", r)
+	http.ListenAndServe(":80", r)
 }

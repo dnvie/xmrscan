@@ -44,6 +44,7 @@ type NetworkInfo struct {
 		TxPoolSize               int    `json:"tx_pool_size"`
 		TxPoolSizeKbytes         int    `json:"tx_pool_size_kbytes"`
 		WhitePeerlistSize        int    `json:"white_peerlist_size"`
+		Price                    string `json:"price"`
 	} `json:"data"`
 	Status string `json:"status"`
 }
@@ -70,8 +71,7 @@ type Tx struct {
 
 type Price struct {
 	Data []struct {
-		Last    string `json:"last"`
-		Open24h string `json:"open24h"`
+		Last string `json:"last"`
 	} `json:"data"`
 }
 
