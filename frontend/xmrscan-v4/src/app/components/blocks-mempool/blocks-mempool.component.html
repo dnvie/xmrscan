@@ -1,0 +1,79 @@
+<div id="frame" class="hidden transition">
+    @if (mode === 0) {
+        <div id="path" class="path font100 hidden transition"><span class="pathInactive transitionFaster" (click)="navigateToHome()">Home</span><span class="pathDot">  ·  </span> Blocks</div>
+        <div class="heading font200">Blocks:</div>
+    } @else {
+        <div id="path" class="path font100 hidden transition"><span class="pathInactive transitionFaster" (click)="navigateToHome()">Home</span><span class="pathDot">  ·  </span> Mempool</div>
+        @if (mempool.data!.txs.length === 0) {
+            <div class="heading font200">Mempool: <span class="lighterText">Empty</span></div>
+        } @else if (mempool.data!.txs.length === 1) {
+            <div class="heading font200">Mempool: <span class="lighterText">1 Tx</span></div>
+        } @else {
+            <div class="heading font200">Mempool: <span class="lighterText">{{ mempool.data!.txs.length }} Txs</span></div>
+        }
+    }
+    <div class="content">
+        @if (mode === 0) {
+            @if (!this.loading) {
+                @for (block of blocks.blocks; track block; let count = $index; let first = $first;) {
+                    <div class="blockCard blockCard{{count%2}} transitionFast" id="blockCard{{count}}" (click)="navigateToBlock(block.data!.block_height)">
+                        <div class="blockCardContainer font100">
+                            <div class="blockCardElement el1"><span class="lighterText">Height: </span>{{ block.data!.block_height }}</div>
+                            <div class="blockCardElement el2"><span class="lighterText">Hash: </span>{{ block.data!.hash.substring(0,8) }} ··· {{ block.data!.hash.substring(block.data!.hash.length-8,block.data!.hash.length) }}</div>
+                            @if (first) {
+                                <div id="newBadge{{ count }}" class="newBadge unrevealed font200 transition">New</div>
+                            }
+                            @if (isMobile) {
+                                <div class="txCountAgeMobile">
+                                    <div class="blockCardElement el3">{{ block.data!.txs.length }}<span class="lighterText"> Txs</span></div>
+                                    <div class="blockCardElement el4"><span class="textAge">{{ block.data!.relative_time }}</span></div>
+                                </div>
+                            } @else {
+                                <div class="blockCardElement el3">{{ block.data!.txs.length }}<span class="lighterText"> Txs</span></div>
+                                <div class="blockCardElement el4"><span class="textAge">{{ block.data!.relative_time }}</span></div>
+                            }
+                        </div>
+                    </div>
+                }
+            } @else {
+                @for (item of getItemsArray(25); track item) {
+                    <div class="blockCard blockCard{{item%2}} skeletonCard">
+                        <div id="skeleton{{ item }}" class="blockCardContainer skeleton hidden transition skeletonBlockCardContainer skeletonBlockCardWidth{{item%4}}"></div>
+                    </div>
+                }
+            }
+            <mat-paginator class="paginator"
+                 [length]="totalPages"
+                 [pageSize]="pageSize"
+                 [pageIndex]="currentPage"
+                 [showFirstLastButtons]="false"
+                 [hidePageSize]="true"
+                 (page)="onPageChange($event)"
+            ></mat-paginator>
+        } @else {
+            @if (!this.loading) {
+                @for (tx of mempool.data!.txs; track tx; let count = $index) {
+                    <div class="blockCard blockCard{{ count%2 }} transitionFast" (click)="navigateToTx(tx.tx_hash)">
+                        <div class="blockCardContainer font100">
+                            <div class="blockCardElement el5"><span class="lighterText">Hash: </span>{{ tx.tx_hash.substring(0,8) }} ··· {{ tx.tx_hash.substring(tx.tx_hash.length-8,tx.tx_hash.length) }}</div>
+                            @if (tx.payment_id8 == null || tx.payment_id8 == undefined || tx.payment_id8 == "") {
+                                <div class="blockCardElement el6"><span class="lighterText">Payment ID: </span><span class="missingText">?</span></div>
+                            } @else {
+                                <div class="blockCardElement el6"><span class="lighterText">Payment ID: </span>{{ tx.payment_id8 }}</div>
+                            }
+                            <div class="el7">
+                                <div class="blockCardElement"><span class="lighterText">Size: </span>{{ (tx.tx_size/1000).toFixed(3) }} kB</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            } @else {
+                @for (item of getItemsArray(25); track item) {
+                    <div class="blockCard blockCard{{ item%2 }} skeletonCard">
+                        <div id="skeleton{{ item }}" class="blockCardContainer skeleton hidden transition skeletonBlockCardContainer skeletonBlockCardWidth{{item%4}}"></div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>

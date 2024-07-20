@@ -1,0 +1,694 @@
+.txInfoContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: calc(15px*var(--factor));
+}
+
+.blockCard {
+    position: relative;
+    width: 100%;
+    height: calc(80px*var(--factor));
+    border-radius: calc(34px*var(--factor));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:0px 0px 0px 4px transparent inset;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.confirmingCard {
+    background-color: var(--confirmingBackground);
+    user-select: none;
+}
+
+.confirmedCard {
+    background-color: var(--confirmedBackground);
+    user-select: none;
+
+}
+
+.sync_icon {
+    animation: infinite 1.5s sync;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+}
+
+.sync_icon:hover {
+    cursor: pointer;
+}
+
+@keyframes sync {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.txCard {
+    background-color: var(--cardLightBackground);
+}
+
+.blockCardContainer {
+    display: flex;
+    width: calc(950px*var(--factor));
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blockCardElementConfirming {
+    color: var(--confirmingText);
+    font-size: calc(22px*var(--factor));
+}
+
+.blockCardElementConfirmed {
+    color: var(--confirmedText);
+    font-size: calc(22px*var(--factor));
+}
+
+.lighterTextConfirming {
+    color: var(--confirmingTextLight);
+}
+
+.lighterTextConfirmed {
+    color: var(--confirmedTextLight);
+}
+
+.blockCardButton {
+    width: calc(190px*var(--factor));
+    height: calc(50px*var(--factor));
+    border-radius: calc(25px*var(--factor));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(20px*var(--factor));
+}
+
+.buttonConfirmed {
+    background-color: var(--confirmedButtonBackground);
+    color: var(--confirmedButtonText);
+}
+
+.buttonConfirming {
+    background-color: var(--confirmingButtonBackground);
+    color: var(--confirmingButtonText);
+}
+
+.card {
+    width: 100%;
+    height: fit-content;
+    padding-top: calc(30px*var(--factor));
+    padding-bottom: calc(30px*var(--factor));
+    border-radius: calc(46px*var(--factor));
+    display: flex;
+    flex-direction: column;
+    row-gap: calc(30px*var(--factor));
+    align-items: center;
+    font-size: calc(22px*var(--factor));
+    color: var(--text);
+    box-shadow:0px 0px 0px 4px transparent inset;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.row {
+    display: flex;
+    justify-content: flex-start;
+    gap: calc(40px*var(--factor));
+    width: calc(951px*var(--factor));
+    height: fit-content;
+}
+
+.singleRow {
+    justify-self: left;
+    width: calc(951px*var(--factor));
+    word-break: break-word;
+}
+
+.proveContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    margin-top: calc(40px*var(--factor));
+}
+
+.proveButtonContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: calc(15px*var(--factor));
+    margin-left: calc(5px*var(--factor));
+}
+
+.proveButton {
+    width: fit-content;
+    padding-left: calc(20px*var(--factor));
+    padding-right: calc(20px*var(--factor));
+    height: calc(50px*var(--factor));
+    border-radius: calc(20px*var(--factor));
+    background-color: var(--proveButtonInactive);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(16px*var(--factor));
+    user-select: none;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.proveButton:hover {
+    cursor: pointer;
+    filter: brightness(105%);
+    transform: translateY(-2px);
+}
+
+.proveButton.active {
+    background-color: var(--proveButtonActive);
+    color: var(--proveButtonActiveText);
+}
+
+.proveInputContainer {
+    width: 100%;
+    height: calc(230px*var(--factor));
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: calc(35px*var(--factor));
+    padding-bottom: calc(20px*var(--factor));
+}
+
+.proveInputContainer.hidden {
+    opacity: 0;
+    margin-top: calc(25px*var(--factor));
+    user-select: none;
+    pointer-events: none;
+    user-select: none;
+}
+
+.proveInputContainer.compact {
+    height: 0px;
+    padding: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.provePart {
+    width: calc(350px*var(--factor));
+    height: calc(230px*var(--factor));
+}
+
+.proveTx {
+    width: calc(230px*var(--factor));
+    height: calc(70px*var(--factor));
+    margin-top: calc(35px*var(--factor));
+    background-color: var(--nextButtonBackground);
+    color: var(--nextButtonText);
+    border-radius: calc(35px*var(--factor));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(18px*var(--factor));
+    user-select: none;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.proveTx:hover {
+    cursor: pointer;
+    filter: brightness(105%);
+    transform: translateY(-2px);
+}
+
+.proveInputField {
+    max-width: calc(330px*var(--factor));
+    min-width: calc(330px*var(--factor));
+    width: calc(330px*var(--factor));
+    height: calc(100px*var(--factor));
+    max-height: calc(100px*var(--factor));
+    min-height: calc(100px*var(--factor));
+    background-color: var(--proveInputFieldBackground);
+    border: none;
+    text-decoration: none;
+    padding: calc(20px*var(--factor));
+    border-radius: calc(30px*var(--factor));
+    word-break: break-all;
+    font-size: calc(18px*var(--factor));
+    color: var(--text);
+    outline: 2px solid transparent;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.proveInputField::placeholder {
+    color: var(--text);
+    opacity: 0.4;
+}
+
+.proveInputField:focus {
+    outline: 2px solid var(--text);
+}
+
+textarea {
+    resize: none;
+}
+
+.proveResult {
+    width: 100%;
+    height: calc(70px*var(--factor));
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: calc(40px*var(--factor));
+    background-color: var(--proveBackground);
+    border-radius: calc(28px*var(--factor));
+    color: var(--proveText);
+    font-size: calc(20px*var(--factor));
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.proveResult.hidden {
+    opacity: 0;
+    margin: 0px;
+    height: calc(30px*var(--factor));
+}
+
+.lighterProveText {
+    color: var(--proveLightText);
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    margin-top: 0px;
+}
+
+.part {
+    width: calc(504px*var(--factor));
+    height: fit-content;
+}
+
+.headingContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+}
+
+.heading {
+    color: var(--textHeading);
+}
+
+.content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: calc(14px*var(--factor));
+}
+
+.card2 {
+    width: 100%;
+    height: calc(135px*var(--factor));
+    border-radius: calc(39px*var(--factor));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: calc(22px*var(--factor));
+    color: var(--text);
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.card2.proven {
+    box-shadow: 0px 0px 0px 3px var(--proveBorder) inset; 
+    background-color: var(--proveBackground);
+    color: var(--proveText);
+}
+
+.txExtra1 {
+    background-color: var(--cardLightBackground);
+}
+
+.txExtra2 {
+    background-color: var(--cardDarkBackground);
+}
+
+.singleRow2 {
+    width: calc(430px*var(--factor));
+    height: fit-content;
+}
+
+.skeleton {
+    overflow: hidden;
+    position: relative;
+    background-color: var(--skeletonBackground);
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+          90deg,
+          rgba(rgba(252, 153, 58), 0) 0,
+          rgba(rgba(252, 153, 58), 0.2) 20%,
+          rgba(rgba(252, 153, 58), 0.5) 60%,
+          rgba(rgba(252, 153, 58), 0)
+        );
+        animation: shimmer 1s infinite;
+        animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+        opacity: 0.25;
+        content: '';
+      }
+}
+
+.skeletonCard {
+    align-items: start;
+}
+
+.skeletonRow {
+    height: calc(26px*var(--factor));
+    width: calc(420px*var(--factor));
+    border-radius: calc(14px*var(--factor));
+    margin-left: calc(30px*var(--factor));
+    opacity: 1;
+}
+
+.skeletonRowShort {
+    width: calc(360px*var(--factor));
+}
+
+.skeletonRowMedium {
+    width: calc(830px*var(--factor));
+    margin-left: 0px;
+}
+
+.skeletonRowLong {
+    margin-left: 0px;
+    width: calc(900px*var(--factor));
+}
+
+.skeletonRow.hidden {
+    width: 20px;
+    opacity: 0;
+}
+
+.confirmCardSkeleton {
+    background-color: var(--cardLightBackground);
+}
+
+.noProveResults {
+    background-color: var(--noProveResultsBackground) !important;
+    color: var(--noProveResultsText) !important;
+}
+
+.copyRow {
+    display: flex;
+    align-items: center;
+    gap: 5px
+}
+
+.copyIcon {
+    opacity: 0.2;
+    font-size: calc(24px*var(--factor));
+    user-select: initial;
+    pointer-events: initial;
+}
+
+.copyIcon:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.copyIcon.shrink {
+    transform: scale(0.5);
+    opacity: 0;
+    user-select: none !important;
+    pointer-events: none !important;
+}
+
+.copyIcon.active {
+    color: #7FD159;
+    opacity: 1;
+    user-select: none !important;
+    pointer-events: none !important;
+}
+
+@media only screen and (max-width: 760px) {
+    #frame {
+        display: flex;
+        align-items: center;
+    }
+
+    .heading {
+        width: 450px;
+        font-size: 30px;
+        padding-left: 25px;
+    }
+
+    .path {
+        width: 450px;
+        font-size: 14px;
+        padding-left: 25px;
+    }
+
+    .txInfoContainer {
+        width: 450px;
+    }
+
+    .blockCardContainer {
+        width: 400px;
+    }
+
+    .txCard {
+        height: 215px;
+        padding: 0;
+    }
+
+    .blockCardElement {
+        font-size: 18px;
+    }
+
+    .blockCardButton {
+        width: calc(190px*var(--factor));
+        height: calc(50px*var(--factor));
+        font-size: 16px;
+    }
+
+    .card {
+        font-size: 18px;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        justify-self: left;
+        width: 400px;
+        word-break: break-word;
+    }
+
+    .singleRow {
+        width: 400px;
+    }
+
+    .proveContainer {
+        width: 450px;
+    }
+
+    .proveButtonContainer {
+        width: 450px;
+        justify-content: space-between;
+    }
+
+    .proveButton {
+        font-size: 18px;
+        padding-left: 46px;
+        padding-right: 46px;
+        height: 60px;
+        border-radius: 25px;
+    }
+
+    .proveInputContainer {
+        width: 450px;
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .provePart {
+        width: 450px;
+        height: 235px;
+        font-size: 16px;
+    }
+
+    .proveInputField {
+        max-width: 422px;
+        min-width: 422px;
+        width: 422px;
+        height: 130px;
+        max-height: 130px;
+        min-height: 130px;
+        font-size: 16px;
+    }
+
+    .proveTx {
+        width: 450px;
+        height: 70px;
+        margin-top: calc(35px*var(--factor));
+        border-radius: 25px;
+        font-size: 18px;
+    }
+
+    .proveResult {
+        height: 70px;
+        border-radius: 25px;
+        font-size: 18px;
+    }
+
+    .contentContainer {
+        display: flex;
+        flex-direction: column;
+        row-gap: 25px;
+        width: 450px;
+        height: fit-content;
+        margin-top: 0px;
+    }
+
+    .headingContainer {
+        padding: 0;
+    }
+
+    .content {
+        width: 450px;
+    }
+
+    .card2 {
+        font-size: 20px;
+        height: 120px;
+    }
+
+    .singleRow2 {
+        width: 400px;
+        height: fit-content;
+    }
+
+    .skeletonRow {
+        height: 26px;
+        width: 400px;
+    }
+
+    .skeletonRowShort {
+        width: 320px;
+    }
+
+    .skeletonRowMedium {
+        width: 400px;
+        height: 120px;
+        border-radius: 15px;
+    }
+
+    .skeletonRowLong {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    .heading {
+        width: 350px;
+        font-size: 28px;
+    }
+
+    .path {
+        width: 350px;
+    }
+
+    .txInfoContainer {
+        width: 350px;
+    }
+
+    .blockCardContainer {
+        width: 300px;
+    }
+
+    .row {
+        width: 320px;
+    }
+
+    .singleRow {
+        width: 320px;
+    }
+
+    .proveContainer {
+        width: 350px;
+    }
+
+    .proveButtonContainer {
+        width: 350px;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    .proveButton {
+        font-size: 16px;
+        padding-left: 29px;
+        padding-right: 29px;
+    }
+
+    .proveInputContainer {
+        width: 350px;
+    }
+
+    .provePart {
+        width: 350px;
+        height: 235px;
+    }
+
+    .proveInputField {
+        max-width: 328px;
+        min-width: 328px;
+        width: 328px;
+        font-size: 14px;
+    }
+
+    .proveTx {
+        width: 350px;
+    }
+
+    .contentContainer {
+        width: 350px;
+    }
+
+    .content {
+        width: 350px;
+    }
+
+    .singleRow2 {
+        width: 320px;
+    }
+
+    .card2 {
+        font-size: 17px;
+    }
+
+    .skeletonRow {
+        width: 310px;
+    }
+
+    .skeletonRowMedium {
+        width: 310px;
+        height: 120px;
+        border-radius: 15px;
+    }
+
+    .skeletonRowLong {
+        width: 310px;
+    }
+}

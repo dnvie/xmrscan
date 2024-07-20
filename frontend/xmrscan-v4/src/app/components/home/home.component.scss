@@ -1,0 +1,246 @@
+#frame {
+    padding-top: calc(270px*var(--factor));
+    width: calc(1350px*var(--factor));
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.part {
+    width: calc(655px*var(--factor));
+    height: fit-content;
+    margin-top: 0px;
+}
+
+.headingContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px 20px 10px;
+}
+
+.heading {
+    font-size: calc(30px*var(--factor));
+    height: fit-content;
+    color: var(--textHeading);
+    user-select: none;
+}
+
+.viewAllButton {
+    width: calc(140px*var(--factor));
+    height: calc(55px*var(--factor));
+    background-color: var(--buttonViewAllBackground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: calc(30px*var(--factor));
+    font-size: calc(18px*var(--factor));
+    color: var(--buttonViewAllText);
+    user-select: none;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.viewAllButton:hover {
+    cursor: pointer;
+    background-color: var(--buttonViewAllBackgroundHover);
+    transform: translateY(-2px);
+}
+
+.content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.card {
+    width: 100%;
+    height: calc(150px*var(--factor));
+    border-radius: calc(40px*var(--factor));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: calc(23px*var(--factor));
+    color: var(--text);
+    box-shadow:0px 0px 0px 3px transparent inset;
+    user-select: none;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.emptyCard {
+    background-color: transparent !important;
+}
+
+.emptyCard:hover {
+    box-shadow: 0px 0px 0px 3px transparent inset !important;
+    cursor: initial !important;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 0px 3px var(--cardHoverBorder) inset;
+    cursor: pointer;
+}
+
+.skeletonCard:hover {
+    box-shadow: 0px 0px 0px 4px transparent inset;
+    cursor: initial;
+}
+
+.part.hidden {
+    margin-top: 25px;
+    opacity: 0;
+}
+
+.blockCard {
+    background-color: var(--cardLightBackground);
+}
+
+.mempoolCard{
+    background-color: var(--cardDarkBackground);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: calc(570px*var(--factor));
+    height: fit-content;
+}
+
+.emptyRow {
+    justify-content: center !important;
+}
+
+.singleRow {
+    justify-content: left;
+}
+
+.age {
+    font-size: calc(15px*var(--factor));
+}
+
+.skeletonCard {
+    align-items: start;
+}
+
+.skeleton {
+    overflow: hidden;
+    position: relative;
+    background-color: var(--skeletonBackground);
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+          90deg,
+          rgba(rgba(252, 153, 58), 0) 0,
+          rgba(rgba(252, 153, 58), 0.2) 20%,
+          rgba(rgba(252, 153, 58), 0.5) 60%,
+          rgba(rgba(252, 153, 58), 0)
+        );
+        animation: shimmer 1s infinite;
+        animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+        opacity: 0.25;
+        content: '';
+      }
+}
+
+.skeletonRow {
+    height: calc(34px*var(--factor));
+    width: calc(560px*var(--factor));
+    border-radius: calc(14px*var(--factor));
+    margin-left: calc(40px*var(--factor));
+    opacity: 1;
+}
+
+.skeletonRow.hidden {
+    width: 20px;
+    opacity: 0;
+}
+
+.skeletonRowShort {
+    width: calc(440px*var(--factor));
+}
+
+@media only screen and (max-width: 1100px) {
+    #frame {
+        width: 600px;
+        justify-content: center;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+
+    .heading {
+        font-size: 30px;
+    }
+
+    .part {
+        width: 600px;
+    }
+
+    .row {
+        width: 550px;
+    }
+
+    .card {
+        height: 140px;
+        border-radius: 35px;
+        font-size: 20px;
+    }
+
+    .viewAllButton {
+        width: 120px;
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    #frame {
+        width: 450px;
+    }
+
+    .part {
+        width: 100%;
+    }
+
+    .row {
+        width: 400px;
+    }
+
+    .skeletonRow {
+        width: 360px;
+    }
+
+    .skeletonRowShort {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    #frame {
+        width: 350px;
+    }
+
+    .card {
+        font-size: 17px;
+    }
+
+    .row {
+        width: 320px;
+    }
+
+    .skeletonRow {
+        width: 270px;
+    }
+
+    .skeletonRowShort {
+        width: 200px;
+    }
+}

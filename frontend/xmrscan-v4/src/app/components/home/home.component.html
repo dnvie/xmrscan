@@ -1,0 +1,76 @@
+<div id="frame">
+    <div class="part transition hidden" id="part1">
+        <div class="headingContainer">
+            <div class="heading font200">Latest Blocks:</div>
+            <div class="viewAllButton font200 transitionFaster" (click)="navigateToBlocks()">View All</div>
+        </div>
+        <div class="content">
+            @if (!loading) {
+                @for (block of home.blocks; track block) {
+                    <div class="card blockCard font100 transitionFast" (click)="navigateToBlock(block.data!.block_height)">
+                        <div class="row">
+                            <div><span class="lighterText">Height: </span>{{ block.data!.block_height }}</div>
+                            <div class="age lighterText">{{ block.data!.relative_time }}</div>
+                        </div>
+                        <div class="row">
+                            <div><span class="lighterText">Hash: </span>{{ block.data!.hash.substring(0, 8)}} ··· {{ block.data!.hash.substring(block.data!.hash.length-8, block.data!.hash.length) }}</div>
+                            <div>{{ block.data!.txs.length }} 
+                                @if (block.data!.txs.length == 1) {
+                                    <span class="lighterText">Tx</span>
+                                } @else {
+                                    <span class="lighterText">Txs</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            } @else {
+                @for (item of getItemsArray(10); track item) {
+                    <div class="card blockCard skeletonCard transition">
+                        <div id="skeleton{{ 2*item }}" class="row skeleton skeletonRow hidden skeletonRowShort transition"></div>
+                        <div id="skeleton{{ 2*item+1 }}" class="row skeleton skeletonRow hidden transition"></div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="part transition hidden" id="part2">
+        <div class="headingContainer">
+            <div class="heading font200">Mempool:</div>
+            <div class="viewAllButton font200 transitionFaster" (click)="navigateToMempool()">View All</div>
+        </div>
+        <div class="content">
+            @if (!loading) {
+                @for (tx of home.txs; track tx) {
+                    <div class="card mempoolCard font100 transitionFast" (click)="navigateToTx(tx.tx_hash)">
+                        <div class="row">
+                            @if (tx.payment_id8 == null || tx.payment_id8 == undefined || tx.payment_id8 == "") {
+                                <div><span class="lighterText">Payment ID: </span><span class="missingText">?</span></div>
+                            } @else {
+                                <div><span class="lighterText">Payment ID: </span>{{ tx.payment_id8.substring(0, 4)}} ··· {{ tx.payment_id8.substring(tx.payment_id8.length-4, tx.payment_id8.length) }}</div>
+                            }
+                        </div>
+                        <div class="row">
+                            <div><span class="lighterText">Hash: </span>{{tx.tx_hash.substring(0,8)}} ··· {{tx.tx_hash.substring(tx.tx_hash.length-8,tx.tx_hash.length)}}</div>
+                            <div>{{ (tx.tx_size/1000).toFixed(3) }} <span class="lighterText">kB</span></div>
+                        </div>
+                    </div>
+                }
+                @empty {
+                    <div class="card emptyCard mempoolCard font100 transitionFast">
+                        <div class="row emptyRow">
+                            <div><span class="lighterText">The Mempool is currently empty</span></div>
+                        </div>
+                    </div>
+                }
+            } @else {
+                @for (item of getItemsArray(10); track item) {
+                    <div class="card mempoolCard skeletonCard transition">
+                        <div id="skeleton2.{{ 2*item }}" class="row skeleton skeletonRow hidden skeletonRowShort transition"></div>
+                        <div id="skeleton2.{{ 2*item+1 }}" class="row skeleton skeletonRow hidden transition"></div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

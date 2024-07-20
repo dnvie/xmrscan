@@ -1,0 +1,11 @@
+<header id="header" class="transition">
+    <div id="headerContainer" class="transition">
+        <div class="search-wrapper">
+            <input type="text" id="headerSearchBar" #headerSearchBar class="font100 transition" placeholder="Search for a Block or Transaction" [(ngModel)]="searchInput" (keydown)="search($event)">
+            <span class="material-symbols-rounded search-icon transitionFast" id="clearSearch" [class.hidden]="!searchInput || searchInput.trim() === ''" (click)="clearSearch()">backspace</span>
+        </div>
+        <div id="searchButton" class="font200 transitionFaster" (click)="searchFromButton()">Search</div>
+    </div>
+    <div id="gradient" class="transition"></div>
+</header>
+<div id="transitionHelper" class="transitionHelper hidden transition"></div>

@@ -1,0 +1,63 @@
+<div id="frame" class="hidden transition">
+    <div id="path" class="path font100 hidden transition"><span class="pathInactive transitionFaster" (click)="navigateToHome()">Home</span><span class="pathDot">  ·  </span><span class="pathInactive transitionFaster" (click)="navigateToBlocks()">Blocks</span><span class="pathDot">  ·  </span> Block {{ block.data!.block_height }}</div>
+    <div class="heading font200">Block: {{ block.data!.block_height}}</div>
+    <div class="blockInfoContainer">
+        @if (!loading) {
+            <div class="blockInfo font100">
+                <div class="row">
+                    <div class="copyRow"><span class="lighterText">Hash: </span>{{ block.data!.hash.substring(0,8) }} ··· {{ block.data!.hash.substring(block.data!.hash.length-8,block.data!.hash.length) }} <span class="material-symbols-rounded transitionFast" id="copyIcon" (click)="copy(block.data!.hash)">content_copy</span></div>
+                    <div class="age lighterText">{{ block.data!.relative_time }}</div>
+                </div>
+                <div class="row">
+                    <div><span class="lighterText">Size: </span>{{ (block.data!.size/1000).toFixed(3) }} kB</div>
+                    <div>{{ block.data!.txs.length }} 
+                        @if (block.data!.txs.length == 1) {
+                            <span class="lighterText">Transaction</span>
+                        } @else {
+                            <span class="lighterText">Transactions</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        } @else {
+            <div class="blockInfo skeletonBlockInfo transition">
+                <div id="skeleton0" class="row skeleton skeletonRow hidden skeletonRowShort transition"></div>
+                <div id="skeleton1" class="row skeleton skeletonRow hidden transition"></div>
+            </div>
+        }
+        <div class="buttonContainer">
+            @if (block.data!.current_height-1 > block.data!.block_height) {
+                <div class="button nextButton font200 transitionFaster" (click)="navigateToBlock(block.data!.block_height+1)">Next Block →</div>
+            }
+            @if (block.data!.block_height > 0) {
+                <div class="button prevButton font200 transitionFaster" (click)="navigateToBlock(block.data!.block_height-1)">← Previous Block</div>
+            }
+        </div>
+    </div>
+    <div class="heading font200">Transactions: <span class="lighterText">{{ block.data!.txs.length }}</span></div>
+    <div class="content">
+        @if (!loading) {
+            @for (tx of block.data!.txs; track tx; let count = $index) {
+                <div class="blockCard blockCard{{ count%2 }} transitionFast" (click)="navigateToTx(tx.tx_hash)">
+                    <div class="blockCardContainer font100">
+                        <div class="blockCardElement el5"><span class="lighterText">Hash: </span>{{ tx.tx_hash.substring(0,8) }} ··· {{ tx.tx_hash.substring(tx.tx_hash.length-8,tx.tx_hash.length) }}</div>
+                        @if (tx.payment_id8 == null || tx.payment_id8 == undefined || tx.payment_id8 == "") {
+                            <div class="blockCardElement el6"><span class="lighterText">Payment ID: </span><span class="missingText">?</span></div>
+                        } @else {
+                            <div class="blockCardElement el6"><span class="lighterText">Payment ID: </span>{{ tx.payment_id8 }}</div>
+                        }
+                        <div class="el7">
+                            <div class="blockCardElement"><span class="lighterText">Size: </span>{{ (tx.tx_size/1000).toFixed(3) }} kB</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        } @else {
+            @for (item of getItemsArray(25); track item) {
+                <div class="blockCard blockCard{{ item%2 }} skeletonCard">
+                    <div id="skeleton{{ item+2 }}" class="blockCardContainer skeleton hidden transition skeletonBlockCardContainer skeletonBlockCardWidth{{item%4}}"></div>
+                </div>
+            }
+        }
+    </div>
+</div>

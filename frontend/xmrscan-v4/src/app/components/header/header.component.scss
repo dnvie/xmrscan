@@ -1,0 +1,259 @@
+#header {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 170px;
+    background-color: var(--siteBackground);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+#header.compact {
+    height: 90px;
+    padding-bottom: 36px;
+}
+
+#headerContainer {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+}
+
+#gradient {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    z-index: 100;
+    background: var(--headerGradient);
+    bottom: -100px;
+    pointer-events: none;
+    user-select: none;
+}
+
+#gradient.compact {
+    height: 30px;
+    bottom: -30px;
+}
+
+.search-wrapper {
+    position: relative;
+    width: fit-content;
+}
+
+.search-icon {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--searchBarText);
+    font-size: 25px !important;
+    display: block;
+    user-select: initial;
+    pointer-events: initial;
+}
+
+.search-icon.compact {
+    right: 15px;
+    font-size: 20px !important;
+}
+
+.search-icon:hover {
+    color: var(--text);
+}
+
+.search-icon.hidden {
+    display: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+#headerSearchBar {
+    width: 640px;
+    height: 75px;
+    border: none;
+    border-radius: 43px;
+    background-color: var(--searchBarBackground);
+    padding: 0px 70px 0px 40px;
+    font-size: 20px;
+    color: var(--text);
+}
+
+#headerSearchBar:focus {
+    outline: none;
+    background-color: var(--searchBarFocused);
+}
+
+#headerSearchBar.compact {
+    width: 465px;
+    height: 55px;
+    border-radius: 29px;
+    font-size: 15px;
+    padding: 0px 55px 0px 30px;
+}
+
+::placeholder {
+    color: var(--searchBarText);
+}
+
+#searchButton {
+    height: 75px;
+    width: 130px;
+    background-color: var(--searchButtonBackground);
+    border-radius: 43px;
+    font-size: 22px;
+    color: var(--searchButtonText);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#searchButton:hover {
+    cursor: pointer;
+    background-color: var(--searchButtonBackgroundHover);
+    transform: translateY(-2px);
+}
+
+#searchButton.compact {
+    height: 55px;
+    width: 95px;
+    border-radius: 29px;
+    font-size: 17px;
+}
+
+.transitionHelper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: 1;
+    user-select: none;
+    pointer-events: none;
+    background-color: var(--siteBackground);
+}
+
+.transitionHelper.hidden {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media only screen and (max-width: 1999px) {
+    #header {
+        height: 130px;
+    }
+
+    #header.compact {
+        height: 70px;
+        padding-bottom: 30px;
+    }
+
+    #gradient {
+        bottom: -80px;
+        height: 80px;
+    }
+
+    #headerSearchBar {
+        width: 610px;
+        height: 65px;
+        border-radius: 38px;
+        font-size: 18px;
+        padding: 0px 60px 0px 30px;
+    }
+
+    #headerSearchBar.compact {
+        width: 430px;
+        height: 45px;
+        border-radius: 29px;
+        font-size: 14px;
+        text-indent: 0px;
+        padding: 0px 50px 0px 20px;
+    }
+
+    #searchButton {
+        width: 110px;
+        height: 65px;
+        border-radius: 40px;
+        font-size: 18px;
+    }
+
+    #searchButton.compact {
+        width: 80px;
+        height: 45px;
+        border-radius: 29px;
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    #headerSearchBar {
+        width: 522px;
+        height: 60px;
+        border-radius: 30px;
+        font-size: 17px;
+    }
+
+    #headerSearchBar.compact {
+        width: 420px;
+        height: 40px;
+        border-radius: 25px;
+        font-size: 14px;
+    }
+
+    #searchButton {
+        width: 0px;
+        display: none;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    #searchButton.compact {
+        width: 0px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    #headerContainer {
+        width: 95%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-wrapper {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #headerSearchBar {
+        width: 100%;
+        height: 60px;
+        border-radius: 30px;
+        font-size: 18px;
+        padding: 0px 55px 0px 20px;
+    }
+
+    #headerSearchBar.compact {
+        width: 90%;
+        height: 50px;
+        border-radius: 25px;
+        font-size: 16px;
+        padding: 0px 45px 0px 15px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    #headerSearchBar {
+        font-size: 16px;
+        text-indent: 15px;
+    }
+    #headerSearchBar.compact {
+        font-size: 14px;
+        text-indent: 10px;
+    }
+}

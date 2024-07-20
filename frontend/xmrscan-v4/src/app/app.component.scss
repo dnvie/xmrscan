@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--siteBackground);
+}
+
+@media only screen and (max-width: 760px) {
+    .container {
+        overflow-x: hidden;
+    }
+}

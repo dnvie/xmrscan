@@ -1,0 +1,325 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--siteBackground);
+}
+
+@font-face {
+    font-family: 'OpenRundeRegular';
+    src: url("assets/fonts/OpenRunde-Regular.woff2");
+    font-style: normal;
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'OpenRundeMedium';
+    src: url("assets/fonts/OpenRunde-Medium.woff2");
+    font-style: normal;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'OpenRundeSemibold';
+    src: url("assets/fonts/OpenRunde-Semibold.woff2");
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'OpenRundeBold';
+    src: url("assets/fonts/OpenRunde-Bold.woff2");
+    font-style: normal;
+    font-weight: 400;
+}
+
+[data-theme="light"] {
+    --siteBackground: #f1ebde;
+    --searchBarBackground: #fef9f0;
+    --searchBarText: #AC9D8A;
+    --searchButtonBackground: #FC993A;
+    --searchButtonBackgroundHover: #ffaa5b;
+    --searchButtonText: #FFE7D0;
+    --textHeading: #4C4638;
+    --text: #676153;
+    --textLight: #A69E91;
+    --textAge: #B7B0A1;
+    --buttonViewAllBackground: #d8d1c5;
+    --buttonViewAllBackgroundHover: #c3beb1;
+    --buttonViewAllText: #4C4639;
+    --cardLightBackground: #fff9ed;
+    --cardDarkBackground: #fff8e9;
+    --headerGradient: linear-gradient(0deg, rgba(241, 235, 222, 0) 0%, rgba(241, 235, 222, 1) 100%);
+    --pathInactive: #9A9487;
+    --pathActive: #E38A34;
+    --newButtonBackground: #5FABF0;
+    --newButtonText: #DCEEFF;
+    --nextButtonBackground: #C1BBAF;
+    --prevButtonBackground: #D8D2C6;
+    --nextButtonText: #4C4639;
+    --prevButtonText: #928C80;
+    --confirmingBackground: #ffe6a7;
+    --confirmingText: #d38d00;
+    --confirmingTextLight: #E7AE39;
+    --confirmingButtonBackground: #F7BE49;
+    --confirmingButtonText: #A46E01;
+    --confirmedBackground: #C2E7A4;
+    --confirmedText: #4A9924;
+    --confirmedTextLight: #7AB757;
+    --confirmedButtonBackground: #78C752;
+    --confirmedButtonText: #305904;
+    --proveButtonInactive: #D8D2C6;
+    --proveButtonActive: #4C4639;
+    --proveButtonActiveText: #eee7da;
+    --proveInputFieldBackground: #f7f0e4;
+    --cardHoverBorder: #FC993A;
+    --skeletonBackground: rgba(0, 0, 0, 0.03);
+    --proveBackground: #D7E8B4;
+    --proveBorder: #7FC44F;
+    --proveText: #4b782b;
+    --proveLightText: #2b4e129b;
+    --themeSwitchButtonBackground: #f2ebdb;
+    --noProveResultsBackground: #ff002221;
+    --noProveResultsText: #fe2b2b;
+    --paginatorDisabled: #67615354;
+    --boxShadow: rgba(0, 0, 0, 0.02);
+    --searchBarFocused: #fffcf5;
+
+    --font100: 'OpenRundeRegular';
+    --font200: 'OpenRundeMedium';
+    --font300: 'OpenRundeSemibold';
+    --font400: 'OpenRundeBold';
+
+    --factor: 1;
+}
+
+[data-theme="dark"] {
+    --siteBackground: #101010;
+    --searchBarBackground: #171717;
+    --searchBarText: #5D5D5D;
+    --searchButtonBackground: #251D15;
+    --searchButtonBackgroundHover: #413325;
+    --searchButtonText: #DE832C;
+    --textHeading: #DBDBDB;
+    --text: #DBDBDB;
+    --textLight: #8C8C8C;
+    --textAge: #767676;
+    --buttonViewAllBackground: #2f2f2f;
+    --buttonViewAllBackgroundHover: #757575;
+    --buttonViewAllText: #DBDBDB;
+    --cardLightBackground: #1A1A1A;
+    --cardDarkBackground: #161616;
+    --headerGradient: linear-gradient(0deg, rgba(16, 16, 16, 0) 0%, rgba(16, 16, 16, 1) 100%);
+    --pathInactive: #6B6B6B;
+    --pathActive: #E28B34;
+    --newButtonBackground: #192C3D;
+    --newButtonText: #3D9DF6;
+    --nextButtonBackground: #313131;
+    --prevButtonBackground: #1C1C1C;
+    --nextButtonText: #FFFFFF;
+    --prevButtonText: #A2A2A2;
+    --confirmingBackground: #272115;
+    --confirmingText: #F8BD45;
+    --confirmingTextLight: #8E6F2E;
+    --confirmingButtonBackground: #F8BD45;
+    --confirmingButtonText: #3E321A;
+    --confirmedBackground: #1B2316;
+    --confirmedText: #80D158;
+    --confirmedTextLight: #4D7939;
+    --confirmedButtonBackground: #7FD159;
+    --confirmedButtonText: #17331D;
+    --proveButtonInactive: #1C1C1C;
+    --proveButtonActive: #C1BBAF;
+    --proveButtonActiveText: #1A1A1A;
+    --proveInputFieldBackground: #1A1A1A;
+    --cardHoverBorder: #FC993A;
+    --skeletonBackground: rgba(255, 255, 255, 0.015);
+    --proveBackground: #1B2316;
+    --proveBorder: #80d158;
+    --proveText: #80d158;
+    --proveLightText: #80d1586c;
+    --themeSwitchButtonBackground: #292929;
+    --noProveResultsBackground: #fd47332e;
+    --noProveResultsText: #fe1f1f;
+    --paginatorDisabled: #dbdbdb46;
+    --boxShadow: rgba(0, 0, 0, 0);
+    --searchBarFocused: #1A1A1A;
+
+    --font100: 'OpenRundeRegular';
+    --font200: 'OpenRundeMedium';
+    --font300: 'OpenRundeSemibold';
+    --font400: 'OpenRundeBold';
+
+    --factor: 1;
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.font100 {
+    font-family: var(--font100);
+    letter-spacing: -0.03rem;
+}
+
+.font200 {
+    font-family: var(--font200);
+    letter-spacing: -0.03rem;
+}
+
+.font300 {
+    font-family: var(--font300);
+    letter-spacing: -0.03rem;
+}
+
+.transition {
+    transition: all 0.2s;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+}
+
+.transitionFaster {
+    transition: all 0.15s;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+}
+
+.transitionFast {
+    transition: all 0.1s;
+    animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+}
+
+.lighterText {
+    color: var(--textLight)
+}
+
+.textAge {
+    color: var(--textAge)
+}
+
+@keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+#frame {
+    padding-top: 150px;
+    width: calc(1045px*var(--factor));
+    min-height: calc(100vh + 1px);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+#frame.hidden {
+    margin-top: 25px;
+    opacity: 0;
+}
+
+.path {
+    height: calc(54px*var(--factor));
+    width: 100%;
+    padding-left: calc(15px*var(--factor));
+    color: var(--pathActive);
+    opacity: 1;
+    font-size: calc(15px*var(--factor)*1.2);
+    user-select: none;
+}
+
+.path.hidden {
+    opacity: 0;
+}
+
+.pathInactive {
+    color: var(--pathInactive);
+}
+
+.pathInactive:hover {
+    cursor: pointer;
+    color: var(--textHeading);
+    text-decoration: underline;
+}
+
+.pathDot {
+    color: var(--pathInactive);
+}
+
+.heading {
+    width: 100%;
+    height: 60px;
+    font-size: calc(30px*var(--factor));
+    padding-left: calc(15px*var(--factor));
+    color: var(--textHeading);
+    user-select: none;
+}
+
+.missingText {
+    opacity: 25% !important;
+}
+
+.mat-mdc-paginator-icon {
+	fill: var(--text) !important;
+}
+
+.mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
+	fill: var(--paginatorDisabled) !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    background-color: var(--noProveResultsText) !important;
+    border-radius: 17px !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: white !important;
+    font-family: 'OpenRundeSemibold' !important;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.mat-mdc-button {
+    letter-spacing: normal !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+    font-family: 'OpenRundeRegular' !important;
+    color: white !important;
+}
+
+@media only screen and (max-width: 1999px) {
+
+    [data-theme="light"] {
+        --factor: 0.85;
+    }
+
+    [data-theme="dark"] {
+        --factor: 0.85;
+    }
+}
+
+.mat-mdc-paginator-range-label {
+    margin: 0 32px 0 24px;
+    font-family: 'OpenRundeSemibold';
+    color: var(--textLight);
+}
+
+@media only screen and (max-width: 1180px) {
+    
+    [data-theme="light"] {
+        --factor: 0.7;
+    }
+
+    [data-theme="dark"] {
+        --factor: 0.7;
+    }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

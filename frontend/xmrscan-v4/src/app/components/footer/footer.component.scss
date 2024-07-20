@@ -1,0 +1,47 @@
+.footer {
+    width: 100%;
+    height: 65px;
+    margin-top: 50px;
+    background-color: var(--cardLightBackground);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--textAge);
+    border-radius: 20px 20px 0 0;
+}
+
+.footerElement {
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 16px;
+}
+
+.button {
+    padding: 15px 20px 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    background-color: var(--themeSwitchButtonBackground);
+    color: var(--text);
+}
+
+a {
+    color: var(--textAge);
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 470px) {
+    .footerElement {
+        margin-left: 25px;
+        margin-right: 25px;
+        font-size: 14px;
+    }
+}

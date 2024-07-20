@@ -1,0 +1,319 @@
+.content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.blockCard {
+    position: relative;
+    width: 100%;
+    height: calc(80px*var(--factor));
+    border-radius: calc(32px*var(--factor));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:0px 0px 0px 3px transparent inset;
+    user-select: none;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.blockCard0{
+    background-color: var(--cardDarkBackground);
+}
+
+.blockCard1{
+    background-color: var(--cardLightBackground);
+}
+
+.blockCard:hover {
+    box-shadow: 0px 0px 0px 3px var(--cardHoverBorder) inset;
+    cursor: pointer;
+}
+
+.newBadge {
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    width: calc(50px*var(--factor));
+    height: calc(30px*var(--factor));
+    border-radius: calc(14px*var(--factor));
+    background-color: var(--newButtonBackground);
+    color: var(--newButtonText);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transform: scale(1);
+    font-size: calc(14px*var(--factor));
+}
+
+.newBadge.unrevealed {
+    transform: scale(0.6);
+    filter: blur(3px);
+    opacity: 0;
+}
+
+.skeletonCard {
+    justify-content: start;
+}
+
+.skeletonCard:hover {
+    box-shadow: 0px 0px 0px 4px transparent inset;
+    cursor: initial;
+}
+
+.blockCardContainer {
+    display: flex;
+    width: calc(960px*var(--factor));
+    height: fit-content;
+    justify-content: flex-start;
+}
+
+.blockCardElement {
+    color: var(--text);
+    font-size: calc(22px*var(--factor));
+}
+
+.el1 {
+    width: calc(247px*var(--factor));
+}
+
+.el2 {
+    width: calc(378px*var(--factor));
+}
+
+.el3 {
+    width: calc(168px*var(--factor));
+}
+
+.el4 {
+    width: calc(167px*var(--factor));
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: calc(20px*var(--factor));
+}
+
+.el5 {
+    width: calc(387px*var(--factor));
+}
+
+.el6 {
+    width: calc(396px*var(--factor));
+}
+
+.el7 {
+    width: calc(177px*var(--factor));
+    display: flex;
+    justify-content: flex-end;
+}
+
+.skeletonBlockCardContainer {
+    height: calc(30px*var(--factor));
+    border-radius: calc(17px*var(--factor));
+    margin-left: calc(50px*var(--factor));
+}
+
+.skeletonBlockCardWidth0 {
+    width: calc(660px*var(--factor));
+}
+
+.skeletonBlockCardWidth1 {
+    width: calc(750px*var(--factor));
+}
+
+.skeletonBlockCardWidth2 {
+    width: calc(940px*var(--factor));
+}
+
+.skeletonBlockCardWidth3 {
+    width: calc(840px*var(--factor));
+}
+
+.skeletonBlockCardContainer.hidden {
+    width: 20px;
+    opacity: 0;
+}
+
+.skeleton {
+    overflow: hidden;
+    position: relative;
+    background-color: var(--skeletonBackground);
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+          90deg,
+          rgba(rgba(252, 153, 58), 0) 0,
+          rgba(rgba(252, 153, 58), 0.0) 20%,
+          rgba(rgba(252, 153, 58), 0.2) 60%,
+          rgba(rgba(252, 153, 58), 0)
+        );
+        animation: shimmer 1s infinite;
+        animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+        opacity: 0.25;
+        content: '';
+      }
+}
+
+.paginator {
+    background-color: transparent;
+    color: var(--text) !important;
+}
+
+@media only screen and (max-width: 950px) {
+    .newBadge {
+        right: 0px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+
+    #frame {
+        display: flex;
+        align-items: center;
+    }
+
+    .heading {
+        width: 450px;
+        font-size: 30px;
+        padding-left: 25px;
+    }
+
+    .path {
+        width: 450px;
+        font-size: 16px;
+        padding-left: 25px;
+    }
+
+    .content {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .blockCard {
+        width: 450px;
+        height: fit-content;
+        justify-content: start;
+        border-radius: 25px;
+    }
+
+    .blockCardContainer {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 25px;
+        width: 100%;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+
+    .blockCardElement {
+        font-size: 19px;
+    }
+
+    .el1 {
+        min-width: 400px;
+    }
+    
+    .el2 {
+        min-width: 400px;
+    }
+
+    .txCountAgeMobile {
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .el3 {
+        width: fit-content;
+    }
+    
+    .el4 {
+        width: fit-content;
+        font-size: 14px;
+    }
+
+    .el5 {
+        min-width: 400px;
+    }
+    
+    .el6 {
+        min-width: 400px;
+    }
+    
+    .el7 {
+        min-width: 400px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .newBadge {
+        top: 0px;
+        right: 0px;
+        width: 65px;
+        height: 35px;
+        border-radius: 14px;
+        font-size: 15px;
+    }
+
+    .skeletonCard {
+        height: 123px;
+    }
+
+    .skeletonBlockCardContainer {
+        height: 60px;
+        border-radius: 17px;
+        margin-left: 25px;
+        width: 375px;
+    }   
+}
+
+@media only screen and (max-width: 470px) {
+    .heading {
+        width: 350px;
+        font-size: 28px;
+    }
+
+    .path {
+        width: 350px;
+    }
+
+    .blockCard {
+        width: 350px;
+    }
+
+    .blockCardElement {
+        font-size: 17px;
+    }
+
+    .txCountAgeMobile {
+        width: 310px;
+    }
+
+    .textAge {
+        font-size: 14px;
+    }
+
+    .newBadge {
+        top: -5px;
+        right: 0px;
+        width: 40px;
+        height: 25px;
+        border-radius: 14px;
+        font-size: 12px;
+    }
+
+    .skeletonBlockCardContainer {
+        height: 60px;
+        border-radius: 23px;
+        margin-left: 17px;
+        width: 292px;
+    }
+}

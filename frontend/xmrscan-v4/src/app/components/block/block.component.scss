@@ -1,0 +1,385 @@
+.blockInfoContainer {
+    width: 100%;
+    height: calc(146px*var(--factor));
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+
+.blockInfo {
+    width: calc(775px*var(--factor));
+    height: 100%;
+    border-radius: calc(45px*var(--factor));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: calc(23px*var(--factor));
+    color: var(--text);
+    background-color: var(--cardLightBackground);
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: calc(700px*var(--factor));
+    height: fit-content;
+}
+
+.copyRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px
+}
+
+#copyIcon {
+    opacity: 0.2;
+    font-size: calc(24px*var(--factor));
+}
+
+#copyIcon:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+#copyIcon.shrink {
+    transform: scale(0.5);
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+#copyIcon.active {
+    color: #7FD159;
+    opacity: 1;
+}
+
+.age {
+    font-size: calc(15px*var(--factor));
+}
+
+.buttonContainer {
+    width: calc(230px*var(--factor));
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.button {
+    height: calc(68px*var(--factor));
+    border-radius: calc(30px*var(--factor));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(20px*var(--factor));
+    user-select: none;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+}
+
+.nextButton {
+    width: calc(200px*var(--factor));
+    background-color: var(--nextButtonBackground);
+    color: var(--nextButtonText);
+}
+
+.prevButton {
+    width: calc(230px*var(--factor));
+    background-color: var(--prevButtonBackground);
+    color: var(--prevButtonText);
+}
+
+.content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.blockCard {
+    position: relative;
+    width: 100%;
+    height: calc(80px*var(--factor));
+    border-radius: calc(32px*var(--factor));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:0px 0px 0px 3px transparent inset;
+    user-select: none;
+    box-shadow: var(--boxShadow) 0px 1px 4px;
+}
+
+.blockCard0{
+    background-color: var(--cardDarkBackground);
+}
+
+.blockCard1{
+    background-color: var(--cardLightBackground);
+}
+
+.blockCard:hover {
+    box-shadow: 0px 0px 0px 3px var(--cardHoverBorder) inset;
+    cursor: pointer;
+}
+
+.skeletonCard {
+    justify-content: start;
+}
+
+.skeletonCard:hover {
+    box-shadow: 0px 0px 0px 4px transparent inset;
+    cursor: initial;
+}
+
+.blockCardContainer {
+    display: flex;
+    width: calc(970px*var(--factor));
+    height: fit-content;
+    justify-content: space-between;
+}
+
+.blockCardElement {
+    color: var(--text);
+    font-size: calc(22px*var(--factor));
+}
+
+.skeletonBlockInfo {
+    align-items: start;
+    justify-content: space-evenly;
+}
+
+.skeletonRow {
+    height: calc(30px*var(--factor));
+    width: calc(680px*var(--factor));
+    border-radius: calc(14px*var(--factor));
+    margin-left: calc(40px*var(--factor));
+    opacity: 1;
+}
+
+.skeletonRow.hidden {
+    width: 20px;
+    opacity: 0;
+}
+
+.skeletonRowShort {
+    width: calc(560px*var(--factor));
+}
+
+.skeletonBlockCardContainer {
+    height: calc(30px*var(--factor));
+    border-radius: calc(17px*var(--factor));
+    margin-left: calc(30px*var(--factor));
+}
+
+.skeletonBlockCardContainer.hidden {
+    width: 20px;
+    opacity: 0;
+}
+
+.skeletonBlockCardWidth0 {
+    width: calc(660px*var(--factor));
+}
+
+.skeletonBlockCardWidth1 {
+    width: calc(750px*var(--factor));
+}
+
+.skeletonBlockCardWidth2 {
+    width: calc(940px*var(--factor));
+}
+
+.skeletonBlockCardWidth3 {
+    width: calc(840px*var(--factor));
+}
+
+.skeleton {
+    overflow: hidden;
+    position: relative;
+    background-color: var(--skeletonBackground);
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+          90deg,
+          rgba(rgba(252, 153, 58), 0) 0,
+          rgba(rgba(252, 153, 58), 0.2) 20%,
+          rgba(rgba(252, 153, 58), 0.5) 60%,
+          rgba(rgba(252, 153, 58), 0)
+        );
+        animation: shimmer 1s infinite;
+        animation-timing-function: cubic-bezier(.74, -0.01, .26, 1.04);
+        opacity: 0.25;
+        content: '';
+      }
+}
+
+.el5 {
+    width: calc(440px*var(--factor));
+}
+
+.el6 {
+    width: calc(450px*var(--factor));
+}
+
+.el7 {
+    width: calc(200px*var(--factor));
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 760px) {
+
+    #frame {
+        display: flex;
+        align-items: center;
+    }
+
+    .heading {
+        width: 450px;
+        font-size: 30px;
+        padding-left: 25px;
+    }
+
+    .path {
+        width: 450px;
+        font-size: 14px;
+        padding-left: 25px;
+    }
+
+    .blockInfoContainer {
+        width: 450px;
+    }
+
+    .blockInfo {
+        width: 450px;
+        font-size: 18px;
+    }
+
+    .age {
+        font-size: 12px;
+    }
+
+    .row {
+        width: 400px;
+    }
+
+    .buttonContainer {
+        width: 0px;
+        display: none;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    .content {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .blockCard {
+        width: 450px;
+        height: fit-content;
+    }
+
+    .blockCardContainer {
+        width: 400px;
+        flex-direction: column;
+        row-gap: 12px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .blockCardElement {
+        color: var(--text);
+        font-size: 19px;
+    }
+
+    .el5 {
+        width: fit-content;
+    }
+    
+    .el6 {
+        width: fit-content;
+    }
+    
+    .el7 {
+        width: fit-content;
+    }
+
+    .skeletonCard {
+        height: 123px;
+    }
+
+    .skeletonBlockCardContainer {
+        height: 60px;
+        border-radius: 17px;
+        margin-left: 25px;
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    .heading {
+        width: 350px;
+        font-size: 28px;
+    }
+
+    .path {
+        width: 350px;
+    }
+
+    .blockInfoContainer {
+        width: 350px;
+    }
+
+    .blockInfo {
+        width: 350px;
+        font-size: 16px;
+    }
+
+    .row {
+        width: 320px;
+    }
+
+    .age {
+        font-size: 10px;
+    }
+
+    .blockCard {
+        width: 350px;
+        height: fit-content;
+    }
+
+    .blockCardContainer {
+        width: 320px;
+    }
+
+    .skeletonCard {
+        height: 123px;
+    }
+
+    .skeletonBlockCardContainer {
+        height: 60px;
+        border-radius: 17px;
+        margin-left: 15px;
+        width: 320px;
+    }
+
+    .skeletonRow {
+        width: 290px;
+    }
+}

@@ -1,0 +1,166 @@
+<div id="frame" class="hidden transition">
+    @if (tx.data!.block_height == 0) {
+        <div id="path" class="path font100 hidden transition"><span class="pathInactive transitionFaster" (click)="navigateToHome()">Home</span><span class="pathDot">  ·  </span><span class="pathInactive transitionFaster" (click)="navigateToMempool()">Mempool</span><span class="pathDot">  ·  </span>Tx {{ tx.data!.tx_hash.substring(0,4) }} ··· {{ tx.data!.tx_hash.substring(tx.data!.tx_hash.length-4, tx.data!.tx_hash.length) }}</div>
+    } @else {
+        <div id="path" class="path font100 hidden transition"><span class="pathInactive transitionFaster" (click)="navigateToHome()">Home</span><span class="pathDot">  ·  </span><span class="pathInactive transitionFaster" (click)="navigateToBlocks()">Blocks</span><span class="pathDot">  ·  </span><span class="pathInactive transitionFaster" (click)="navigateToBlock(tx.data!.block_height)">Block {{ tx.data!.block_height }}</span><span class="pathDot">  ·  </span>Tx {{ tx.data!.tx_hash.substring(0,4) }} ··· {{ tx.data!.tx_hash.substring(tx.data!.tx_hash.length-4, tx.data!.tx_hash.length) }}</div>
+    }
+   
+    <div class="heading font200">Transaction: {{ tx.data!.tx_hash.substring(0,4) }} ··· {{ tx.data!.tx_hash.substring(tx.data!.tx_hash.length-4, tx.data!.tx_hash.length) }}</div>
+    <div class="txInfoContainer">
+        @if (!loading) {
+            @if (tx.data!.confirmations >= 10) {
+                <div class="blockCard transitionFast confirmedCard">
+                    <div class="blockCardContainer font200">
+                        @if (isMobile) {
+                            <div class="blockCardElementConfirmed">{{ tx.data!.confirmations }}<span class="lighterTextConfirmed"> Confirmations </span></div>
+                        } @else {
+                            <div class="blockCardElementConfirmed">{{ tx.data!.confirmations }}<span class="lighterTextConfirmed"> Confirmations </span></div>
+                            <div class="blockCardButton buttonConfirmed">Confirmed&nbsp;<span class="material-symbols-rounded">verified</span></div>
+                        }
+                    </div>
+                </div>  
+            } @else {
+                <div class="blockCard transitionFast confirmingCard">
+                    <div class="blockCardContainer font200">
+                        @if (isMobile) {
+                            <div class="blockCardElementConfirming">{{ tx.data!.confirmations }}<span class="lighterTextConfirming"> of </span>10<span class="lighterTextConfirming"> Confirmations </span></div>
+                        } @else {
+                            <div class="blockCardElementConfirming">{{ tx.data!.confirmations }}<span class="lighterTextConfirming"> of </span>10<span class="lighterTextConfirming"> Confirmations </span></div>
+                            <div class="blockCardButton buttonConfirming">Confirming&nbsp;<span class="material-symbols-rounded sync_icon" (click)="reload()">sync</span></div>
+                        }
+                    </div>
+                </div>  
+            }
+            <div class="card blockCard font100 transitionFast txCard">
+                <div class="singleRow">
+                    @if (isMobile) {
+                        <div class="copyRow"><span class="lighterText">Hash: </span>{{ tx.data!.tx_hash.substring(0,8) }} ··· {{ tx.data!.tx_hash.substring(tx.data!.tx_hash.length-8, tx.data!.tx_hash.length) }} <span class="material-symbols-rounded transitionFast copyIcon" id="copyIcon" (click)="copy(tx.data!.tx_hash, $event)">content_copy</span></div>
+                    } @else {
+                        <div class="copyRow"><span class="lighterText">Hash: </span>{{ tx.data!.tx_hash }} <span class="material-symbols-rounded transitionFast copyIcon" id="copyIcon" (click)="copy(tx.data!.tx_hash, $event)">content_copy</span></div>
+                    }
+                </div>
+                <div class="row">
+                    @if (tx.data!.payment_id8 == null || tx.data!.payment_id8 == undefined || tx.data!.payment_id8 == "") {
+                        <div><span class="lighterText">Payment ID: </span><span class="missingText">?</span></div>
+                    } @else {
+                        <div><span class="lighterText">Payment ID: </span>{{ tx.data!.payment_id8 }}</div>
+                    }
+                    <div><span class="lighterText">Fee: </span>{{ tx.data!.tx_fee/1000000000000 }} ɱ</div>
+                    <div><span class="lighterText">Size: </span>{{ (tx.data!.tx_size/1000).toFixed(3) }} kB</div>
+                </div>
+            </div>
+        } @else {
+            <div class="blockCard transitionFast confirmCard confirmCardSkeleton">
+                <div class="blockCardContainer font200">
+                    <div id="skeleton3.0" class="skeleton skeletonRow skeletonRowLong hidden transition"></div>
+                </div>
+            </div>  
+            <div class="card blockCard font100 transitionFast txCard">
+                <div class="singleRow">
+                    <div id="skeleton3.1" class="skeleton skeletonRow skeletonRowLong hidden transition"></div>
+                </div>
+                <div class="row">
+                    <div id="skeleton3.2" class="skeleton skeletonRow skeletonRowMedium hidden transition"></div>
+                </div>
+            </div>
+        }
+        
+    </div>
+    <div class="proveContainer">
+        <div class="proveButtonContainer">
+            <div id="proveSendingButton" class="proveButton proveSending font200 transitionFaster" (click)="revealProveSendingContainer()">Prove Sending</div>
+            <div id="decodeOutputsButton" class="proveButton decodeOutputs font200 transitionFaster" (click)="revealDecodeOutputsContainer()">Decode Outputs</div>
+        </div>
+        <div id="proveSendingContainer" class="proveInputContainer hidden compact transition">
+            <div class="provePart">
+                <div class="heading font200">Address:</div>
+                <textarea id="firstTextArea" class="proveInputField font100 transitionFast" placeholder="Enter your Address here" spellcheck="false" [(ngModel)]="address"></textarea>
+            </div>
+            <div class="provePart">
+                <div id="secondHeading" class="heading font200">Transaction Key:</div>
+                <textarea id="secondTextArea" class="proveInputField font100 transitionFast" placeholder="Enter your Transaction Key here" spellcheck="false" [(ngModel)]="key"></textarea>
+            </div>
+            <div class="proveTx font200 transitionFaster" (click)="proveTransaction()">
+                Prove Transaction →
+            </div>
+        </div>
+        <div id="proveResult" class="proveResult transition hidden font200"></div>
+    </div>
+    <div class="contentContainer">
+        <div class="part">
+            <div class="headingContainer">
+                @if (tx.data!.inputs == null || tx.data!.inputs == undefined) {
+                    <div class="heading font200">Senders: <span class="lighterText">0</span></div>
+                } @else {
+                    <div class="heading font200">Senders: <span class="lighterText">{{ tx.data!.inputs.length }}</span></div>
+                }
+            </div>
+            <div class="content">
+                @if (!loading) {
+                    @for (input of tx.data!.inputs; track input; let count = $index) {
+                        <div class="card2 txExtra1 font100">
+                            <div class="singleRow2">
+                                <div><span class="lighterText">Amount: </span> {{ (input.amount/1000000000000).toFixed(9) }} ɱ</div>
+                            </div>
+                            <div class="singleRow2">
+                                <div class="copyRow"><span class="lighterText">Key Image: </span>{{ input.key_image.substring(0,8) }} ··· {{ input.key_image.substring(input.key_image.length-8, input.key_image.length) }} <span class="material-symbols-rounded transitionFast copyIcon" id="copyIconInput{{count}}" (click)="copy(input.key_image, $event)">content_copy</span></div>
+                            </div>
+                        </div>
+                    }
+                    @empty {
+                        <div class="card2 txExtra1 font100">
+                            <div class="singleRow2">
+                                <div><span class="lighterText">No Inputs</span></div>
+                            </div>
+                        </div>
+                    }
+                } @else {
+                    @for (item of getItemsArray(9); track item) {
+                        <div class="card2 skeletonCard txExtra1 font100">
+                            <div id="skeleton{{ 2*item }}" class="skeleton skeletonRow hidden skeletonRowShort transition"></div>
+                            <div id="skeleton{{ 2*item+1 }}" class="skeleton skeletonRow hidden transition"></div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="part">
+            <div class="headingContainer">
+                @if (tx.data!.outputs == null || tx.data!.outputs == undefined) {
+                    <div class="heading font200">Receivers: <span class="lighterText">0</span></div>
+                } @else {
+                    <div class="heading font200">Receivers: <span class="lighterText">{{ tx.data!.outputs.length }}</span></div>
+                }
+            </div>
+            <div class="content">
+                @if (!loading) {
+                    @for (output of tx.data!.outputs; track output; let count = $index) {
+                        <div id="{{ output.public_key }}" class="card2 txExtra2 font100">
+                            <div class="singleRow2">
+                                <div><span class="lighterText">Amount: </span> {{ (output.amount/1000000000000).toFixed(9) }} ɱ</div>
+                            </div>
+                            <div class="singleRow2">
+                                <div class="copyRow"><span class="lighterText">Public Key: </span>{{ output.public_key.substring(0,8) }} ··· {{ output.public_key.substring(output.public_key.length-8, output.public_key.length) }} <span class="material-symbols-rounded transitionFast copyIcon" id="copyIconOutput{{count}}" (click)="copy(output.public_key, $event)">content_copy</span></div>
+                            </div>
+                        </div>
+                    }
+                    @empty {
+                        <div class="card2 txExtra2 font100">
+                            <div class="singleRow2">
+                                <div><span class="lighterText">No Outputs</span></div>
+                            </div>
+                        </div>
+                    }
+                } @else {
+                    @for (item of getItemsArray(5); track item) {
+                        <div class="card2 skeletonCard txExtra1 font100">
+                            <div id="skeleton2.{{ 2*item }}" class="skeleton skeletonRow hidden skeletonRowShort transition"></div>
+                            <div id="skeleton2.{{ 2*item+1 }}" class="skeleton skeletonRow hidden transition"></div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
