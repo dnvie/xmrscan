@@ -1,5 +1,5 @@
 # https://xmrscan.com
-Monero ($XMR) Blockchain Explorer
+Monero ($XMR) Blockchain Explorer (v4)
 
 Features:
 - View blocks, transactions and the mempool
