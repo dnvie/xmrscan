@@ -23,7 +23,7 @@ func GetHome(r *http.Request) (int, data.Home) {
 	}
 	returnHome.Blocks = blocks.Blocks[:10]
 
-	resp2, err := http.Get("https://xmrchain.net/api/mempool")
+	resp2, err := http.Get("https://moneroexplorer.org/api/mempool")
 	if err != nil {
 		return resp2.StatusCode, returnHome
 	}
@@ -54,7 +54,7 @@ func GetBlock(r *http.Request) (int, data.Block) {
 	returnBlock.Status = "fail"
 
 	height := chi.URLParam(r, "height")
-	url := fmt.Sprintf("https://xmrchain.net/api/block/%s", height)
+	url := fmt.Sprintf("https://moneroexplorer.org/api/block/%s", height)
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -91,7 +91,7 @@ func GetTx(r *http.Request) (int, data.Tx) {
 	var returnTx data.Tx
 	returnTx.Status = "fail"
 
-	url := fmt.Sprintf("https://xmrchain.net/api/transaction/%s", chi.URLParam(r, "hash"))
+	url := fmt.Sprintf("https://moneroexplorer.org/api/transaction/%s", chi.URLParam(r, "hash"))
 	resp, err := http.Get(url)
 	if err != nil {
 		return resp.StatusCode, returnTx
@@ -122,7 +122,7 @@ func GetBlocks(r *http.Request) (int, data.Blocks) {
 	}
 	var returnBlocks data.Blocks
 
-	url := fmt.Sprintf("https://xmrchain.net/api/transactions?page=%d", page)
+	url := fmt.Sprintf("https://moneroexplorer.org/api/transactions?page=%d", page)
 	resp, err := http.Get(url)
 	if err != nil {
 		return resp.StatusCode, returnBlocks
@@ -166,7 +166,7 @@ func GetBlocks(r *http.Request) (int, data.Blocks) {
 func GetSearchResult(r *http.Request) (int, data.SearchResult) {
 	var returnSearchResult data.SearchResult
 
-	url := fmt.Sprintf("https://xmrchain.net/api/search/%s", chi.URLParam(r, "query"))
+	url := fmt.Sprintf("https://moneroexplorer.org/api/search/%s", chi.URLParam(r, "query"))
 	resp, err := http.Get(url)
 	if err != nil {
 		return resp.StatusCode, returnSearchResult
